@@ -1,0 +1,15 @@
+.delete-photo {
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: rgb(187, 160, 132);
+    color: black;
+}
+
+.edit-submit {
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: rgb(187, 160, 132);
+    color: black;
+}

@@ -1,0 +1,53 @@
+.nav-ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style-type: none;
+    margin: 0 0 1rem 0;
+}
+
+.navlink {
+    color: white;
+    text-decoration: none;
+}
+
+.active {
+    text-decoration-line: underline !important;
+    text-decoration-thickness: 3px !important;
+    color: white;
+}
+
+/* .modal-button {
+    color: white;
+    background-color: rgb(24, 22, 22);
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+} */
+
+ul.nav-ul {
+    border-bottom: 2px groove gray;
+    padding-bottom: 2rem;
+    padding-top: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.nav {
+    z-index: 10;
+}
+
+.logo {
+    color: rgb(187, 160, 132);
+    position: absolute;
+    left: -25%;
+    top: -2.2rem;
+    width: 100%;
+    font-size: 1.3rem;
+    font-family: 'Rouge Script', cursive;
+}
+
+.logo-li {
+    position: relative;
+    width: 5rem;
+}

@@ -1,0 +1,8 @@
+/* TODO Add site wide styles */
+body {
+    background-color: rgb(24, 22, 22);
+}
+
+html, body, button {
+    font-family: 'Cormorant Garamond', serif;
+}

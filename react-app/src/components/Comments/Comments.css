@@ -1,0 +1,65 @@
+.add-comment-form {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+
+}
+
+.edit-comment-form {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+}
+
+.add-submit {
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: rgb(187, 160, 132);
+    color: black;
+    position: relative;
+    left: 25%;
+
+}
+
+.comment-buttons {
+    position: relative;
+    left: 20%;
+}
+
+.edit-submit {
+    width: 3rem;
+    height: 1.5rem;
+    border-radius: 4px;
+    background-color: rgb(187, 160, 132);
+    color: black;
+    position: relative;
+    margin-right: 10px;
+}
+
+.delete-comment {
+    width: 3rem;
+    height: 1.5rem;
+    border-radius: 4px;
+    background-color: rgb(187, 160, 132);
+    color: black;
+    position: relative;
+}
+
+.add-comment-box {
+    width: 15rem;
+    height: 5rem;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.Edit-comment-box {
+    width: 15rem;
+    height: 5rem;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.comments-hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(206, 206, 206, 0.75), rgba(255, 255, 255, 0));
+}

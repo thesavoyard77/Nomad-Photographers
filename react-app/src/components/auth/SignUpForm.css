@@ -1,0 +1,36 @@
+label {
+    color: black;
+    margin-right: 2rem;
+}
+
+.logout {
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: rgb(187, 160, 132);
+    color: black;
+}
+
+ .modal-button {
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: rgb(187, 160, 132);
+    color: black;
+}
+
+.sign-up-button {
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: rgb(187, 160, 132);
+    color: black;
+}
+
+.account-button {
+    color: white;
+    background-color: rgb(24, 22, 22);
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+}

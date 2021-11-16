@@ -1,0 +1,18 @@
+create user nomad_app with createdb password 'password';
+
+create database nomad_db with owner nomad_app;
+
+=================================================================
+Docker stuff
+
+set up heroku link in the docker file
+
+pipenv lock -r > requirements.txt
+
+@channel one thing I forgot at the end, if you do alter your DB, 
+instead of the standard upgrade and seed commands, to change your DB 
+on heroku you’ll need to run:
+heroku run -a nomad-photography flask seed undo
+heroku run -a nomad-photography flask db migrate
+heroku run -a nomad-photography flask db upgrade
+heroku run -a nomad-photography flask seed all 

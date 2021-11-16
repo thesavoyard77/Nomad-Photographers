@@ -1,0 +1,56 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "Title Title Title"
+      "Links Links Links"
+      "Description Description Description";
+
+  }
+  
+  .Title { 
+      grid-area: Title; 
+      color: rgb(187, 160, 132);
+    }
+  
+  .Description {
+       grid-area: Description;
+     }
+  
+  .Links { grid-area: Links; }
+  
+  .hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(206, 206, 206, 0.75), rgba(255, 255, 255, 0));
+  }
+
+  .headers {
+    color: rgb(187, 160, 132);
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .text {
+      text-align: center;
+      color: white;
+
+      font-size: 1.2rem;
+  }
+
+  .link {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: blueviolet;
+    display: inline;
+
+  }
+
+  .link:hover {
+    color: rgb(255, 0, 191);
+}

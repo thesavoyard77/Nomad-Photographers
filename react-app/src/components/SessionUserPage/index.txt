@@ -1,0 +1,82 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom';
+import './SessionUser.css'
+import { getPhotosThunk } from "../../store/photo";
+import { Carousel } from 'react-carousel-minimal';
+
+
+export default function SessionUserPage() {
+const sessionUser = useSelector((state) => state.session?.user);
+const dispatch = useDispatch();
+const photos = useSelector(store => Object.values(store?.photo))
+let carouselImages =[];
+
+
+
+useEffect(() => {
+    dispatch(getPhotosThunk())
+    return
+}, [dispatch])
+
+if (photos){
+    photos?.map(photo => {
+        let image = {id: photo?.id, image: photo?.url, caption: photo?.place_name,
+             description: photo?.description, grid: photo?.geo_location}
+
+        carouselImages.push(image)
+        return
+    })
+}
+
+const captionStyle = {
+    fontSize: '2em',
+    fontWeight: 'bold',
+  }
+  const slideNumberStyle = {
+    fontSize: '20px',
+    fontWeight: 'bold',
+  }
+
+return (
+<div id="grandfatherDiv">
+    {carouselImages?.length &&
+    <div className="outer-wrapper">
+        <div className="carousel-wrapper">
+        <div className="carousel-text">
+            <h2>{sessionUser?.username?.split("")[0].toUpperCase() + sessionUser?.username?.slice(1)}'s Destinations</h2>
+            <p>Easy to use, responsive and customizable carousel component for React Projects.</p>
+            <div className="carousel" >
+            <Carousel
+                data={carouselImages}
+                time={5000}
+                width="850px"
+                height="500px"
+                captionStyle={captionStyle}
+                radius="10px"
+                slideNumber={true}
+                slideNumberStyle={slideNumberStyle}
+                captionPosition="top"
+                automatic={true}
+                dots={true}
+                pauseIconColor="white"
+                pauseIconSize="40px"
+                slideBackgroundColor="darkgrey"
+                slideImageFit="cover"
+                thumbnails={true}
+                thumbnailWidth="100px"
+                style={{
+                textAlign: "center",
+                maxWidth: "850px",
+                maxHeight: "500px",
+                margin: "40px auto",
+                }}
+            />
+            </div>
+        </div>
+        </div>
+    </div>
+    }
+</div>
+)
+}
