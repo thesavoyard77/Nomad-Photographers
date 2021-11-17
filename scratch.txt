@@ -12,7 +12,7 @@ pipenv lock -r > requirements.txt
 @channel one thing I forgot at the end, if you do alter your DB, 
 instead of the standard upgrade and seed commands, to change your DB 
 on heroku you’ll need to run:
-heroku run -a nomad-photography flask seed undo
-heroku run -a nomad-photography flask db migrate
-heroku run -a nomad-photography flask db upgrade
-heroku run -a nomad-photography flask seed all 
+heroku run -a nomad-photographers flask seed undo
+heroku run -a nomad-photographers flask db migrate
+heroku run -a nomad-photographers flask db upgrade
+heroku run -a nomad-photographers flask seed all 
