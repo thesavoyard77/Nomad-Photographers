@@ -59,7 +59,7 @@ export default function EditPhotoForm({photo}) {
             {errors.map((error, ind) => (
              <div key={ind} style={{color: "red"}}><b>{error}</b></div>
               ))}
-                <label>Edit Description</label>
+                <label className="form-label">Edit Description</label>
                 <textarea
                 className="edit-description"
                 defaultValue={description}
@@ -68,7 +68,7 @@ export default function EditPhotoForm({photo}) {
                 placeholder={photo.description}
                 maxLength='150'
                 ></textarea>
-                <label>Edit Place Name</label>
+                <label className="form-label">Edit Place Name</label>
                 <textarea
                 className="edit-place-name"
                 defaultValue={placeName}

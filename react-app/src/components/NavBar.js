@@ -58,7 +58,7 @@ Modal.setAppElement('#root')
                </>
                }
               {sessionUser && <LogoutButton />}
-              <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button>
+              {/* <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button> */}
           </Modal>
 
         </li>

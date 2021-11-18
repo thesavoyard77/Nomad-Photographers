@@ -53,7 +53,7 @@ return (
             <button className="add-modal-button" onClick={() => setModalIsOpen(true)}>...Upload a Photo</button>
                  <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                     <AddPhotoForm />
-              <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button>
+              {/* <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button> */}
                 </Modal>
         </div>}
     </div>}
@@ -79,9 +79,36 @@ return (
                 {sessionUser &&         
                 <div className="add-photo-modal">
                     <button className="add-modal-button" onClick={() => setModalIsOpen(true)}>...Upload a Photo</button>
-                        <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+                        <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
+                        style={{
+                            overlay: {
+                                position: 'fixed',
+                                top: 100,
+                                left: 150,
+                                right: 50,
+                                bottom: 100,
+                                backgroundColor: 'rgba(1, 1, 1, 0.750.33)'
+                            },
+                            content: {
+                                position: 'absolute',
+                                top: '15%',
+                                left: '55%',
+                                right: '10%',
+                                bottom: '5%',
+                                border: '5px solid #BBA084',
+                                background: '#fff',
+                                overflow: 'auto',
+                                WebkitOverflowScrolling: 'touch',
+                                borderRadius: '6px',
+                                outline: 'none',
+                                padding: '20px',
+                                backgroundColor: '#F5F5F5',
+                              }
+                            
+                        }}
+                        >
                             <AddPhotoForm />
-                    <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button>
+                    {/* <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button> */}
                         </Modal>
                 </div>}
             </div>

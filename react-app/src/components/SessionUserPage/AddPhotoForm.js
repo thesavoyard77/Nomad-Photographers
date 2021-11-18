@@ -91,12 +91,13 @@ export default function AddPhotoForm() {
             {errors.map((error, ind) => (
              <div key={ind} style={{color: "red"}}><b>{error}</b></div>
               ))}
-                <label>Upload Photo</label>
+                <label><h2>Upload a Photo</h2></label>
                 <input type="file" 
+                className="upload-button"
                 accept="photo/*"
                 onChange={updatePhoto}
                 />
-                <label>Description</label>
+                <label className="form-label">Description</label>
                 <textarea
                 className="add-description"
                 value={description}
@@ -105,7 +106,7 @@ export default function AddPhotoForm() {
                 placeholder="The Eiffel Tower"
                 maxLength='150'
                 ></textarea>
-                <label>Place Name</label>
+                <label className="form-label">Place Name</label>
                 <textarea
                 className="add-place-name"
                 value={placeName}
