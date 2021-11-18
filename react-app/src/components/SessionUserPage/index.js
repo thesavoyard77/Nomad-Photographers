@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import ModalCapture from "./EditModalForm";
 import CommentsModal from "../Comments/SessionCommentModal";
@@ -7,7 +7,7 @@ import { getSessionPhotosThunk } from "../../store/photo";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi'
 import AddPhotoForm from "../SessionUserPage/AddPhotoForm";
 import Modal from "react-modal";
-
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 
 export default function SessionUserPage() {
@@ -18,13 +18,29 @@ const photos = useSelector(store => Object.values(store?.photo))
 const [ picture, setPicture ] = useState(0)
 const length = photos.length;
 const [ modalIsOpen, setModalIsOpen ] = useState(false)
+const [currentPosition, setCurrentPosition] = useState({lat:34.24329181959273,lng:-116.90497061685328})
+const [map, setMap] = useState(null)
+
 
 useEffect(() => {
     dispatch(getSessionPhotosThunk(id))
     return
 }, [dispatch, id])
 
+const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API
+  })
+  
+  const containerStyle = {
+    width: '500px',
+    height: '500px'
+  };
 
+  const onUnmount = useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+ 
 
 
 const nextSlide = () => {
@@ -76,6 +92,19 @@ return (
                 </div>
                 <ModalCapture photo={photos[picture]} />
                 <CommentsModal photo={photos[picture]} />
+                <div className="map_page__container">
+ 
+                <div style={{ height: '500px', width: '500px' }}>
+                    {isLoaded && <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    zoom={16}
+                    center={currentPosition}
+                    onUnmount={onUnmount}
+                    >
+                    </GoogleMap>}
+                </div>
+
+                </div>
                 {sessionUser &&         
                 <div className="add-photo-modal">
                     <button className="add-modal-button" onClick={() => setModalIsOpen(true)}>...Upload a Photo</button>
