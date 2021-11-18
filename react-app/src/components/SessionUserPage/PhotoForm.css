@@ -2,7 +2,7 @@
     width: 5rem;
     height: 2.5rem;
     border-radius: 4px;
-    background-color: rgb(187, 160, 132);
+    background-color: rgb(248, 15, 15);
     color: black;
 }
 
@@ -12,4 +12,42 @@
     border-radius: 4px;
     background-color: rgb(187, 160, 132);
     color: black;
+    position: absolute;
+    top: 110%;
+    left: 25%;
+}
+
+.delete-photo {
+    position: absolute;
+    top: 110%;
+    right: 25%;
+}
+
+.add-photo-form, .edit-photo-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 800;
+    /* z-index: 10; */
+    position: relative;
+    
+}
+
+
+.add-description, .add-place-name, .edit-place-name, .edit-description {
+    width: 70%;
+    height: 25%;
+    font-family: 'Cormorant Garamond', serif;
+    border-radius: 3px;
+}
+
+.form-label {
+    margin-top: .7rem;
+}
+.add-submit {
+    position: absolute;
+    left: 37%;
+    top: 110%;
 }
