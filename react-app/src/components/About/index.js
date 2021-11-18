@@ -19,7 +19,7 @@ export default function AboutPage() {
              <label className="text">Linkedin:</label>
              <a className="link" href="https://www.linkedin.com/in/christopher-felix-a7a25a51"><BsLinkedin /></a> <br />
              <label className="text">This Project:    </label>
-             <a  className="link" href="https://github.com/thesavoyard77/Nomad_Photographers"><BsGithub /></a> <br />
+             <a  className="link" href="https://github.com/thesavoyard77/Nomad-Photographers"><BsGithub /></a> <br />
 
 
         <hr className="hr"></hr>
