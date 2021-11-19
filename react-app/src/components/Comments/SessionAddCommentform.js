@@ -32,7 +32,7 @@ export default function AddCommentForm (photoId) {
             {errors.map((error, ind) => (
              <div key={ind} style={{color: "red"}}><b>{error}</b></div>
               ))}
-                <label>~Enter Your Comment~</label>
+                <label><b>~Enter Your Comment~</b></label>
                 <textarea 
                 className="add-comment-box"
                 name="add-comment-box"

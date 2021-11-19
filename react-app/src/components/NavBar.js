@@ -74,6 +74,7 @@ Modal.setAppElement('#root')
                         outline: 'none',
                         padding: '20px',
                         backgroundColor: '#F5F5F5',
+                        
                       }
                     
                 }}

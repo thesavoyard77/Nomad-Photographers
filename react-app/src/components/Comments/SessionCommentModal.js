@@ -54,7 +54,7 @@ return (
             <div className='comment-div' key={comment?.id}>
                 <hr className="comments-hr"></hr>
                 <h3 className="comments-username">{comment?.user_name?.username.split("")[0].toUpperCase() + comment?.user_name?.username.slice(1)}</h3>
-                <p className="comment-body">{comment?.body}</p>
+                <p className="comment-body"><b>{comment?.body}</b></p>
                 {sessionUser && sessionUser.id === comment.user_id && <EditCommentForm comment={comment} photo_id={photo_id} />}
                 <hr className="comments-hr" ></hr>
             </div>
