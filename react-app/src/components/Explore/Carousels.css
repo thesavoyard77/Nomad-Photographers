@@ -127,7 +127,7 @@
 }
 
 .add-photo-modal {
-    /* position: relative; */
+    position: relative;
     width: 10rem;
 }
 
@@ -188,4 +188,12 @@
 .no-photos {
     color: white;
     text-align: center;
+    text-align: end;
+    margin: 2rem;
+}
+
+#upload-no-photos {
+    position: absolute;
+    left: 440%;
+
 }
