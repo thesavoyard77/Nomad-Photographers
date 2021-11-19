@@ -45,7 +45,7 @@ export default function EditCommentForm({ comment, photo_id }) {
             {errors.map((error, ind) => (
              <div key={ind} style={{color: "red"}}><b>{error}</b></div>
               ))}
-                <label>~Update Your Comment~</label>
+                <label><b>~Update Your Comment~</b></label>
                 <textarea 
                 className="Edit-comment-box"
                 name="Edit-comment-box"
@@ -53,7 +53,7 @@ export default function EditCommentForm({ comment, photo_id }) {
                 onChange={updateBody}
                 ></textarea>
                 <div className="comment-buttons">
-                <button className="edit-submit" type="submit" value="submit">Submit</button>
+                <button className="edit-comment-submit" type="submit" value="submit">Submit</button>
                 <button className="delete-comment" onClick={handleDelete}>Remove</button>
                 </div>
             </form>

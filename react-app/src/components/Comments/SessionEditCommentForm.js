@@ -53,7 +53,7 @@ export default function EditCommentForm({ comment, photo_id }) {
                 onChange={updateBody}
                 ></textarea>
                 <div className="comment-buttons">
-                <button className="edit-submit" type="submit" value="submit">Submit</button>
+                <button className="edit-comment-submit" type="submit" value="submit">Submit</button>
                 <button className="delete-comment" onClick={handleDelete}>Remove</button>
                 </div>
             </form>

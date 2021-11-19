@@ -1,14 +1,16 @@
 .add-comment-form {
     display: flex;
     flex-direction: column;
-    width: 20rem;
+    width: 100%;
+    position: relative;
 
 }
 
 .edit-comment-form {
     display: flex;
     flex-direction: column;
-    width: 20rem;
+    width: 100%;
+    align-items: center;
 }
 
 .add-submit {
@@ -17,49 +19,71 @@
     border-radius: 4px;
     background-color: rgb(187, 160, 132);
     color: black;
-    position: relative;
-    left: 25%;
+    position: aboslute;
+
 
 }
 
-.comment-buttons {
+/* .comment-buttons {
     position: relative;
     left: 20%;
-}
+} */
 
-.edit-submit {
-    width: 3rem;
-    height: 1.5rem;
+.edit-comment-submit {
+    padding: .5rem;
     border-radius: 4px;
     background-color: rgb(187, 160, 132);
     color: black;
-    position: relative;
-    margin-right: 10px;
+    position: absolute;
+    left: 35%;
 }
 
 .delete-comment {
-    width: 3rem;
-    height: 1.5rem;
+    padding: .5rem;
     border-radius: 4px;
-    background-color: rgb(187, 160, 132);
-    color: black;
-    position: relative;
+    background-color: #D11A2A;
+    color: white;
+    position: absolute;
 }
 
 .add-comment-box {
-    width: 15rem;
-    height: 5rem;
+    width: 20rem;
+    height: 4rem;
     font-family: 'Cormorant Garamond', serif;
 }
 
+#close-modal-explore, #close-modal-session {
+    position: absolute;
+    right: 5%;
+    top: 10%;
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: rgb(226, 29, 29);
+    color: rgb(255, 255, 255);
+    z-index: 2;
+
+   }
+
 .Edit-comment-box {
-    width: 15rem;
-    height: 5rem;
+    width: 20rem;
+    height: 4rem;
     font-family: 'Cormorant Garamond', serif;
 }
 
 .comments-hr {
     border: 0;
-    height: 1px;
+    height: 2px;
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(206, 206, 206, 0.75), rgba(255, 255, 255, 0));
+    margin-top: 3rem;
 }
+
+
+
+.modal-parent {
+    position: relative;
+}
+
+/* .add-wrapper {
+    margin-bottom: 3rem;
+} */

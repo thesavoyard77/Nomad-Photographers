@@ -27,10 +27,3 @@ label {
     color: black;
 }
 
-.account-button {
-    color: white;
-    background-color: rgb(24, 22, 22);
-    border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-}
