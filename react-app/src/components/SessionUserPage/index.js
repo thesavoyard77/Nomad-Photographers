@@ -46,11 +46,11 @@ Modal.setAppElement('#root')
 return (
 <section id="grandfather">
     {!photos.length && 
-    <div>
+    <div style={{ width:'100%'}}>
         <h1 className="no-photos">Your photos will appear here!</h1>
         {sessionUser &&         
         <div className="add-photo-modal">
-            <button className="add-modal-button" onClick={() => setModalIsOpen(true)}>...Upload a Photo</button>
+            <button className="add-modal-button" id="upload-no-photos" onClick={() => setModalIsOpen(true)}>...Upload a Photo</button>
                  <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                     <AddPhotoForm />
               {/* <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button> */}
