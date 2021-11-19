@@ -48,47 +48,49 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={onSignUp}>
-      <div>
-      {errors.map((error, ind) => (
-      <div key={ind} style={{color: "red"}}><b>{error}</b></div>
-      ))}
-      </div>
-      <div>
-        <label className="label-txt">User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
+      <div className="sign-up-log-in"> 
+        <div>
+        {errors.map((error, ind) => (
+        <div key={ind} style={{color: "red"}}><b>{error}</b></div>
+        ))}
+        </div>
+        <div>
+          <label className="label-txt"><b>User Name</b></label>
+          <input
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+          ></input>
+        </div>
+        <div>
+          <label><b>Email</b></label>
+          <input
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+          ></input>
+        </div>
+        <div>
+          <label><b>Password</b></label>
+          <input
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+          ></input>
+        </div>
+        <div>
+          <label><b>Repeat Password</b></label>
+          <input
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
         ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
+        </div>
       </div>
       <button type='submit' className="sign-up-button">Sign Up</button>
     </form>

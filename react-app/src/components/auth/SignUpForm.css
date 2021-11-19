@@ -26,4 +26,21 @@ label {
     background-color: rgb(187, 160, 132);
     color: black;
 }
+label {
+    display: inline-block;
+    width: 240px;
+}
 
+#login {
+    position: absolute;
+    bottom: 0%;
+    left: 20%;
+}
+
+#demo-login {
+
+}
+
+.sign-up-log-in {
+    position: relative;
+}

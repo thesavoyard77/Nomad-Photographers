@@ -45,7 +45,7 @@ export default function EditCommentForm({ comment, photo_id }) {
             {errors.map((error, ind) => (
              <div key={ind} style={{color: "red"}}><b>{error}</b></div>
               ))}
-                <label>~Update Your Comment~</label>
+                <label><b>~Update Your Comment~</b></label>
                 <textarea 
                 className="Edit-comment-box"
                 name="Edit-comment-box"
