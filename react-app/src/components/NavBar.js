@@ -47,7 +47,34 @@ Modal.setAppElement('#root')
         </li> */}
         <li>
           <button className="account-button" onClick={() => setModalIsOpen(true)}>Account</button>
-          <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+          <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
+                   style={{
+                    overlay: {
+                        position: 'fixed',
+                        top: 100,
+                        left: 150,
+                        right: 50,
+                        bottom: 100,
+                        backgroundColor: 'rgba(1, 1, 1, 0.750.33)'
+                    },
+                    content: {
+                        position: 'absolute',
+                        top: '15%',
+                        left: '55%',
+                        right: '10%',
+                        bottom: '20%',
+                        border: '5px solid #BBA084',
+                        background: '#fff',
+                        overflow: 'auto',
+                        WebkitOverflowScrolling: 'touch',
+                        borderRadius: '6px',
+                        outline: 'none',
+                        padding: '20px',
+                        backgroundColor: '#F5F5F5',
+                      }
+                    
+                }}
+          >
               {!sessionUser &&
               <>
               <h2> Log In </h2>
