@@ -12,6 +12,8 @@ const NavBar = () => {
 const sessionUser = useSelector((state) => state.session?.user);
 const [ modalIsOpen, setModalIsOpen ] = useState(false)
 
+console.log(sessionUser)
+
 Modal.setAppElement('#root')
   return (
     <nav className="nav">
@@ -47,8 +49,36 @@ Modal.setAppElement('#root')
         </li> */}
         <li>
           <button className="account-button" onClick={() => setModalIsOpen(true)}>Account</button>
-          <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-              {!sessionUser &&
+          {!sessionUser && <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
+                   style={{
+                    overlay: {
+                        position: 'fixed',
+                        top:-50,
+                        left: 150,
+                        right: 50,
+                        bottom: -50,
+                        backgroundColor: 'rgba(1, 1, 1, 0.750.33)',
+                        zIndex: 5,
+                    },
+                    content: {
+                        position: 'absolute',
+                        top: '15%',
+                        left: '55%',
+                        right: '10%',
+                        bottom: '20%',
+                        border: '5px solid #BBA084',
+                        background: '#fff',
+                        overflow: 'auto',
+                        WebkitOverflowScrolling: 'touch',
+                        borderRadius: '6px',
+                        outline: 'none',
+                        padding: '20px',
+                        backgroundColor: '#F5F5F5',
+                        
+                      }
+                    
+                }}
+          >
               <>
               <h2> Log In </h2>
                <LoginForm /> <br />
@@ -56,11 +86,46 @@ Modal.setAppElement('#root')
                <h2>Sign Up</h2>
                <SignUpForm />
                </>
+               </Modal>}
+               
+               {sessionUser && 
+               <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
+               style={{
+                overlay: {
+                    position: 'fixed',
+                    top: 100,
+                    left: 150,
+                    right: 50,
+                    bottom: 100,
+                    backgroundColor: 'rgba(1, 1, 1, 0.750.33)'
+                },
+                content: {
+                    position: 'absolute',
+                    top: '-5%',
+                    left: '77%',
+                    right: '6%',
+                    bottom: '55%',
+                    border: '5px solid #BBA084',
+                    background: '#fff',
+                    overflow: 'auto',
+                    WebkitOverflowScrolling: 'touch',
+                    borderRadius: '6px',
+                    outline: 'none',
+                    padding: '20px',
+                    backgroundColor: '#F5F5F5',
+                  }
+                
+            }}
+      > 
+      {sessionUser && 
+        <div className="account-logged-in">
+          <h2>Current User:</h2>
+          <p><b>{sessionUser?.username?.split("")[0].toUpperCase() + sessionUser?.username?.slice(1)}</b></p>
+          <p><b>{sessionUser.email}</b></p>
+          <LogoutButton />
+        </div>}
+      </Modal>
                }
-              {sessionUser && <LogoutButton />}
-              <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button>
-          </Modal>
-
         </li>
       </ul>
     </nav>

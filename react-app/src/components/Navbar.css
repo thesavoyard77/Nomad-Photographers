@@ -51,3 +51,18 @@ ul.nav-ul {
     position: relative;
     width: 5rem;
 }
+
+.account-logged-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.account-button {
+    color: white;
+    background-color: rgb(24, 22, 22);
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
