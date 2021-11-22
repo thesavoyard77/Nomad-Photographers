@@ -50,7 +50,7 @@ return (
         <h1 className="no-photos">Your photos will appear here!</h1>
         {sessionUser &&         
         <div className="add-photo-modal">
-            <button className="add-modal-button" id="upload-no-photos" onClick={() => setModalIsOpen(true)}>...Upload a Photo</button>
+            <button className="add-modal-button-no-photos" id="upload-no-photos" onClick={() => setModalIsOpen(true)}>...Upload a Photo</button>
                  <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                     <AddPhotoForm />
               {/* <button className="modal-button" onClick={() => setModalIsOpen(false)}>Close</button> */}
@@ -78,7 +78,7 @@ return (
                 <CommentsModal photo={photos[picture]} />
                 {sessionUser &&         
                 <div className="add-photo-modal">
-                    <button className="add-modal-button" onClick={() => setModalIsOpen(true)}>...Upload a Photo</button>
+                    <button className="add-modal-button" id="upload-photos" onClick={() => setModalIsOpen(true)}>...Upload a Photo</button>
                         <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                         style={{
                             overlay: {
