@@ -103,19 +103,16 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    /* overflow: hidden; */
+    position: relative;
 }
 
 .slide {
     opacity: 0;
-    /* transition-duration: 0.5s ease; */
     height: 0;
 }
 
 .slide.active {
     opacity: 1;
-    /* transition-duration: 0.5s;
-    transform: scale(1.04); */
     height: 1;
     width: 1;
 }
@@ -129,17 +126,21 @@
 .add-photo-modal {
     position: relative;
     width: 10rem;
+    height: 10rem;
 }
 
 .add-modal-button {
-    position: absolute;
     background-color: rgb(187, 160, 132);
-    right: 37.6%;
-    top: 280%;
     border-radius: 5px;
     color: black;
     width: 8rem;
     height: 3rem;
+}
+
+#upload-photos {
+    position: absolute;
+    right: -222.5%;
+    bottom: 140%;
 }
 
 .add-modal-button:hover  {
@@ -193,7 +194,16 @@
 }
 
 #upload-no-photos {
-    position: absolute;
-    left: 440%;
+    position: fixed;
+    left: 47%;
+    top: 50%;
+}
 
+.add-modal-button-no-photos {
+    cursor: pointer;
+    background-color: rgb(187, 160, 132);
+    border-radius: 5px;
+    color: black;
+    width: 8rem;
+    height: 3rem;
 }
