@@ -40,9 +40,6 @@ if(!photos.length) {
     return null;
 }
 
-// if (sessionUser) {
-//     id = sessionUser.id
-// }
 
 
 return (

@@ -4,10 +4,12 @@ import ModalCapture from "./EditModalForm";
 import CommentsModal from "../Comments/SessionCommentModal";
 import '../Explore/Carousels.css'
 import { getSessionPhotosThunk } from "../../store/photo";
-import {BiLeftArrow, BiRightArrow} from 'react-icons/bi'
+import {BiLeftArrow, BiRightArrow} from 'react-icons/bi';
+import { FiCamera } from 'react-icons/fi'
 import AddPhotoForm from "../SessionUserPage/AddPhotoForm";
 import Modal from "react-modal";
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+
 
 
 export default function SessionUserPage() {
@@ -18,7 +20,7 @@ const photos = useSelector(store => Object.values(store?.photo))
 const [ picture, setPicture ] = useState(0)
 const length = photos.length;
 const [ modalIsOpen, setModalIsOpen ] = useState(false)
-const [currentPosition, setCurrentPosition] = useState({lat:34.24329181959273,lng:-116.90497061685328})
+
 const [map, setMap] = useState(null)
 
 
@@ -27,37 +29,48 @@ useEffect(() => {
     return
 }, [dispatch, id])
 
+
 const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API
+    googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
   })
   
   const containerStyle = {
     width: '500px',
-    height: '500px'
+    height: '300px'
   };
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null)
   }, [])
  
+let latitude = photos[picture +1]?.geo_location?.split(',')[0]
+let longitude = photos[picture +1]?.geo_location?.split(',')[1]
 
+latitude = +latitude
+longitude = +longitude
+
+const mapLoc = {lat:latitude,lng:longitude}
 
 const nextSlide = () => {
     setPicture(picture === length - 1 ? 0 : picture + 1)
+    setCurrentPosition(mapLoc)
 }
 
 const prevSlide = () => {
     setPicture(picture === 0 ? length -1 : picture - 1)
+    setCurrentPosition(mapLoc)
 }
 
+console.log(photos[0]?.geo_location?.lat)
 
-// if(!photos.length) {
-//     return null;
-// }
+// console.log(mapLoc)
+
+const [currentPosition, setCurrentPosition] = useState(mapLoc?.lat ? mapLoc : {lat:45.83267299283038,lng:6.860822627841172})
 
 
-//hidden={!index === picture} works as well
+
+
 Modal.setAppElement('#root')
 return (
 <section id="grandfather">
@@ -94,13 +107,18 @@ return (
                 <CommentsModal photo={photos[picture]} />
                 <div className="map_page__container">
  
-                <div style={{ height: '500px', width: '500px' }}>
+                <div id="map-page-container-inner" style={{ height: '500px', width: '500px' }}>
                     {isLoaded && <GoogleMap
                     mapContainerStyle={containerStyle}
-                    zoom={16}
+                    zoom={14}
                     center={currentPosition}
                     onUnmount={onUnmount}
                     >
+                    <Marker 
+                    position={currentPosition}
+                    title="Camera Marker"
+                    // icon={<FiCamera />}
+                    streetView={false} />
                     </GoogleMap>}
                 </div>
 
