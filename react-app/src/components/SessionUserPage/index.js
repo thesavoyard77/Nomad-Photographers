@@ -5,7 +5,7 @@ import CommentsModal from "../Comments/SessionCommentModal";
 import '../Explore/Carousels.css'
 import { getSessionPhotosThunk } from "../../store/photo";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi';
-import { FiCamera } from 'react-icons/fi'
+// import { FiCamera } from 'react-icons/fi'
 import AddPhotoForm from "../SessionUserPage/AddPhotoForm";
 import Modal from "react-modal";
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
@@ -21,7 +21,8 @@ const [ picture, setPicture ] = useState(0)
 const length = photos.length;
 const [ modalIsOpen, setModalIsOpen ] = useState(false)
 
-const [map, setMap] = useState(null)
+
+
 
 
 useEffect(() => {
@@ -29,6 +30,22 @@ useEffect(() => {
     return
 }, [dispatch, id])
 
+let locationArray = []
+
+const locationMap = () => {
+    photos?.map(photo => {
+      let oneLatitude = photo?.geo_location?.split(',')[0]
+      let oneLongitude = photo?.geo_location?.split(',')[1]
+      oneLatitude = +oneLatitude
+      oneLongitude = +oneLongitude
+      locationArray.push({lat:oneLatitude,lng:oneLongitude})
+    })
+}
+locationMap()
+// console.log(locationArray)
+
+
+const [currentPosition, setCurrentPosition] = useState(locationArray[0])
 
 const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -40,35 +57,35 @@ const { isLoaded } = useJsApiLoader({
     height: '300px'
   };
 
+  const [map, setMap] = useState(null)
+
   const onUnmount = useCallback(function callback(map) {
     setMap(null)
   }, [])
+
+
  
-let latitude = photos[picture +1]?.geo_location?.split(',')[0]
-let longitude = photos[picture +1]?.geo_location?.split(',')[1]
+ 
+// let latitude = photos[picture +1]?.geo_location?.split(',')[0]
+// let longitude = photos[picture +1]?.geo_location?.split(',')[1]
 
-latitude = +latitude
-longitude = +longitude
+// latitude = +latitude
+// longitude = +longitude
 
-const mapLoc = {lat:latitude,lng:longitude}
+
+
+// const mapLoc = {lat:latitude,lng:longitude}
+// // console.log(mapLoc)
 
 const nextSlide = () => {
     setPicture(picture === length - 1 ? 0 : picture + 1)
-    setCurrentPosition(mapLoc)
+    setCurrentPosition(locationArray[picture])
 }
 
 const prevSlide = () => {
     setPicture(picture === 0 ? length -1 : picture - 1)
-    setCurrentPosition(mapLoc)
+    setCurrentPosition(locationArray[picture])
 }
-
-console.log(photos[0]?.geo_location?.lat)
-
-// console.log(mapLoc)
-
-const [currentPosition, setCurrentPosition] = useState(mapLoc?.lat ? mapLoc : {lat:45.83267299283038,lng:6.860822627841172})
-
-
 
 
 Modal.setAppElement('#root')
