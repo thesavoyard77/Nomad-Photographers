@@ -5,7 +5,7 @@ import CommentsModal from "../Comments/SessionCommentModal";
 import '../Explore/Carousels.css'
 import { getSessionPhotosThunk } from "../../store/photo";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi';
-// import { FiCamera } from 'react-icons/fi'
+import { FiCamera } from 'react-icons/fi'
 import AddPhotoForm from "../SessionUserPage/AddPhotoForm";
 import Modal from "react-modal";
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
@@ -42,7 +42,6 @@ const locationMap = () => {
     })
 }
 locationMap()
-// console.log(locationArray)
 
 
 const [currentPosition, setCurrentPosition] = useState(locationArray[0])
@@ -64,28 +63,17 @@ const { isLoaded } = useJsApiLoader({
   }, [])
 
 
- 
- 
-// let latitude = photos[picture +1]?.geo_location?.split(',')[0]
-// let longitude = photos[picture +1]?.geo_location?.split(',')[1]
-
-// latitude = +latitude
-// longitude = +longitude
-
-
-
-// const mapLoc = {lat:latitude,lng:longitude}
-// // console.log(mapLoc)
-
 const nextSlide = () => {
     setPicture(picture === length - 1 ? 0 : picture + 1)
-    setCurrentPosition(locationArray[picture])
+    setCurrentPosition(locationArray[picture === length - 1 ? 0 : picture + 1])
 }
 
 const prevSlide = () => {
     setPicture(picture === 0 ? length -1 : picture - 1)
-    setCurrentPosition(locationArray[picture])
+    setCurrentPosition(locationArray[picture === 0 ? length -1 : picture - 1])
+    
 }
+
 
 
 Modal.setAppElement('#root')
