@@ -42,27 +42,6 @@
 }
 
 
-.photographer-name {
-    color: rgb(187, 160, 132);
-    position: absolute;
-    right: -25%;
-    top: -8%;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
-    width: 50vh;
-}
-
-
-.description-text {
-    color: white;
-    width: 20vw;
-    position: absolute;
-    right: -30%;
-    top: 10%;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-}
-
 .location-name {
     position: absolute;
     left: 33%;
@@ -117,11 +96,7 @@
     width: 1;
 }
 
-.edit-modal-button {
-    position: absolute;
-    right: -50%;
 
-}
 
 .add-photo-modal {
     position: relative;
@@ -139,7 +114,7 @@
 
 #upload-photos {
     position: absolute;
-    right: -222.5%;
+    right: -173%;
     bottom: 140%;
 }
 
@@ -162,7 +137,7 @@
 .edit-modal-button {
     position: absolute;
     background-color: rgb(187, 160, 132);
-    right: 68.4%;
+    right: 72.2%;
     top:280%;
     border-radius: 5px;
     color: black;
@@ -206,4 +181,32 @@
     color: black;
     width: 8rem;
     height: 3rem;
+}
+
+.map_page__container {
+    position: absolute;
+    right: -40%;
+    top: 122%;
+}
+
+
+.photographer-name {
+    color: rgb(187, 160, 132);
+    position: absolute;
+    right: -44%;
+    top: -8%;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    width: 50vh;
+}
+
+
+.description-text {
+    color: white;
+    width: 20vw;
+    position: absolute;
+    right: -42%;
+    top: 6%;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
 }

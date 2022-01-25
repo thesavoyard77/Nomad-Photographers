@@ -52,8 +52,8 @@ const { isLoaded } = useJsApiLoader({
   })
   
   const containerStyle = {
-    width: '500px',
-    height: '300px'
+    width: '400px',
+    height: '250px'
   };
 
   const [map, setMap] = useState(null)
@@ -104,7 +104,7 @@ return (
             <div className={index === picture ? 'slide active' : 'slide'} key={index}>
                 <div className="inner">
               {index === picture && (<img src={photo?.url} alt='travel' className="current-image"></img>)}
-              {sessionUser &&  <h2 className="photographer-name">{sessionUser?.username?.split("")[0].toUpperCase() + sessionUser?.username?.slice(1)}</h2>}
+              {sessionUser &&  <h2 className="photographer-name">Photo by {sessionUser?.username?.split("")[0].toUpperCase() + sessionUser?.username?.slice(1)}</h2>}
               <h3 className="location-name">{photo?.place_name}</h3>
               <h5 className="description-text"><hr className="carousel-hr"></hr>{photo?.description}<hr className="carousel-hr"></hr></h5>
                 </div>
@@ -112,7 +112,7 @@ return (
                 <CommentsModal photo={photos[picture]} />
                 <div className="map_page__container">
  
-                <div id="map-page-container-inner" style={{ height: '500px', width: '500px' }}>
+                <div id="map-page-container-inner" style={{ height: '300px', width: '300px' }}>
                     {isLoaded && <GoogleMap
                     mapContainerStyle={containerStyle}
                     zoom={14}
