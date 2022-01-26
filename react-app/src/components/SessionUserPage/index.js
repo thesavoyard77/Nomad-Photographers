@@ -5,10 +5,11 @@ import CommentsModal from "../Comments/SessionCommentModal";
 import '../Explore/Carousels.css'
 import { getSessionPhotosThunk } from "../../store/photo";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi';
-// import { FiCamera } from 'react-icons/fi'
+import CameraIcon from './public/cameraIcon.png'
+import mapStyle from "./public/mapStyle";
 import AddPhotoForm from "../SessionUserPage/AddPhotoForm";
 import Modal from "react-modal";
-import { GoogleMap, useJsApiLoader, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 
 
@@ -109,18 +110,28 @@ return (
                 <ModalCapture photo={photos[picture]} />
                 <CommentsModal photo={photos[picture]} />
                 <div className="map_page__container">
-                <div id="map-page-container-inner" style={{ height: '300px', width: '300px' }}>
+                <div id="map-page-container-inner" style={{ height: '400px', width: '250px' }}>
                 {isLoaded && currentPosition ?<GoogleMap
                     mapContainerStyle={containerStyle}
+                    clickableIcons={true}
                     zoom={12}
                     center={currentPosition}
+                    options={{styles: mapStyle}}
                     onUnmount={onUnmount}
                     >
-                <InfoWindow position={currentPosition} >
+                {/* <InfoWindow position={currentPosition} >
                     <div>
-                        <span style={{color: `blue`}}>{sessionUser?.username?.split("")[0].toUpperCase() + sessionUser?.username?.slice(1)}</span>
+                        <span style={{color: `blue`}}>{"📷"}</span>
                     </div>
-                </InfoWindow>
+                </InfoWindow> */}
+                <Marker 
+                    position={currentPosition}
+                    title="Marker of Mark"
+                    icon={{
+                        url: CameraIcon,
+                        scaledSize: new window.google.maps.Size(25, 25)
+                    }}
+                    streetView={false} />
                 </GoogleMap>:null}
                 </div>
                 </div>

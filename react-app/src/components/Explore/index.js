@@ -1,12 +1,13 @@
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-// import { NavLink } from 'react-router-dom';
+import CameraIcon from '../SessionUserPage/public/cameraIcon.png'
+import mapStyle from "../SessionUserPage/public/mapStyle";
 import './Carousels.css'
 import { getPhotosThunk } from "../../store/photo";
 import { getUsersThunk } from "../../store/user";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi'
 import CommentsModal from "../Comments/ExploreCommentsModal";
-import { GoogleMap, useJsApiLoader, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 export default function SessionUserPage() {
 // const sessionUser = useSelector((state) => state.session?.user);
@@ -85,7 +86,7 @@ return (
             <div className={index === picture ? 'slide active' : 'slide'} key={index}>
                 <div className="inner">
               {index === picture && (<img src={photo?.url} alt='travel' className="current-image"></img>)}
-                <h2 className="photographer-name">{photo?.users?.username?.split("")[0].toUpperCase() + photo?.users?.username?.slice(1)} </h2>
+                <h2 className="photographer-name">Photo by {photo?.users?.username?.split("")[0].toUpperCase() + photo?.users?.username?.slice(1)} </h2>
                 <h3 className="location-name">{photo?.place_name}</h3>
               <h5 className="description-text"><hr className="carousel-hr"></hr>{photo?.description}<hr className="carousel-hr"></hr></h5>
                 </div>
@@ -95,13 +96,18 @@ return (
                     mapContainerStyle={containerStyle}
                     zoom={12}
                     center={currentPosition}
+                    options={{styles: mapStyle}}
                     onUnmount={onUnmount}
                     >
-                <InfoWindow position={currentPosition} >
-                    <div>
-                        <span style={{color: `blue`}}>{photo?.users?.username?.split("")[0].toUpperCase() + photo?.users?.username?.slice(1)}</span>
-                    </div>
-                </InfoWindow>
+                    <Marker 
+                        position={currentPosition}
+                        title="Marker of Mark"
+                        icon={{
+                            url: CameraIcon,
+                            scaledSize: new window.google.maps.Size(25, 25)
+                        }}
+                        streetView={false} 
+                    />
                 </GoogleMap>:null}
                 </div>
                 </div>
