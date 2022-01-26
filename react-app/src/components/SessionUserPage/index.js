@@ -5,10 +5,10 @@ import CommentsModal from "../Comments/SessionCommentModal";
 import '../Explore/Carousels.css'
 import { getSessionPhotosThunk } from "../../store/photo";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi';
-import { FiCamera } from 'react-icons/fi'
+// import { FiCamera } from 'react-icons/fi'
 import AddPhotoForm from "../SessionUserPage/AddPhotoForm";
 import Modal from "react-modal";
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, InfoWindow } from '@react-google-maps/api';
 
 
 
@@ -39,6 +39,7 @@ const locationMap = () => {
       oneLatitude = +oneLatitude
       oneLongitude = +oneLongitude
       locationArray.push({lat:oneLatitude,lng:oneLongitude})
+      return
     })
 }
 locationMap()
@@ -71,10 +72,7 @@ const nextSlide = () => {
 const prevSlide = () => {
     setPicture(picture === 0 ? length -1 : picture - 1)
     setCurrentPosition(locationArray[picture === 0 ? length -1 : picture - 1])
-    
 }
-
-
 
 Modal.setAppElement('#root')
 return (
@@ -111,22 +109,20 @@ return (
                 <ModalCapture photo={photos[picture]} />
                 <CommentsModal photo={photos[picture]} />
                 <div className="map_page__container">
- 
                 <div id="map-page-container-inner" style={{ height: '300px', width: '300px' }}>
-                    {isLoaded && <GoogleMap
+                {isLoaded && currentPosition ?<GoogleMap
                     mapContainerStyle={containerStyle}
-                    zoom={14}
+                    zoom={12}
                     center={currentPosition}
                     onUnmount={onUnmount}
                     >
-                    <Marker 
-                    position={currentPosition}
-                    title="Camera Marker"
-                    // icon={<FiCamera />}
-                    streetView={false} />
-                    </GoogleMap>}
+                <InfoWindow position={currentPosition} >
+                    <div>
+                        <span style={{color: `blue`}}>{sessionUser?.username?.split("")[0].toUpperCase() + sessionUser?.username?.slice(1)}</span>
+                    </div>
+                </InfoWindow>
+                </GoogleMap>:null}
                 </div>
-
                 </div>
                 {sessionUser &&         
                 <div className="add-photo-modal">
