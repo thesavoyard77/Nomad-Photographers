@@ -119,11 +119,6 @@ return (
                     options={{styles: mapStyle}}
                     onUnmount={onUnmount}
                     >
-                {/* <InfoWindow position={currentPosition} >
-                    <div>
-                        <span style={{color: `blue`}}>{"📷"}</span>
-                    </div>
-                </InfoWindow> */}
                 <Marker 
                     position={currentPosition}
                     title="Marker of Mark"
@@ -142,15 +137,17 @@ return (
                         style={{
                             overlay: {
                                 position: 'fixed',
-                                top: 100,
-                                left: 150,
+                                top: 50,
+                                left: -1000,
                                 right: 50,
-                                bottom: 100,
-                                backgroundColor: 'rgba(1, 1, 1, 0.750.33)'
+                                bottom: 50,
+                                backgroundColor: 'rgba(1, 1, 1, 0.750.33)',
+                                zIndex: 5,
+                                overflow: 'hidden'
                             },
                             content: {
                                 position: 'absolute',
-                                top: '15%',
+                                top: '5%',
                                 left: '55%',
                                 right: '10%',
                                 bottom: '5%',

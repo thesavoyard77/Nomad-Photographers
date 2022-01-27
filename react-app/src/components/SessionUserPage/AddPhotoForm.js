@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
+import CameraIcon from './public/cameraIcon.png'
+import mapStyle from "./public/mapStyle";
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import Geocode from 'react-geocode'
 import './PhotoForm.css'
 
 export default function AddPhotoForm() {
@@ -9,25 +13,42 @@ export default function AddPhotoForm() {
     const [ photo, setPhoto ] = useState(null)
     const history = useHistory();
     const dispatch = useDispatch();
-    // const [url, setUrl] = useState()
     const [ description, setDescription ] = useState()
     const sessionUser = useSelector((state) => state.session?.user);
     const id = sessionUser?.id
     const geo_location = "45.83267462290539, 6.860941236982223"
     const [placeName, setPlaceName] = useState()
     const [ photoLoading, setPhotoLoading ] = useState(false)
+    const [currentPosition, setCurrentPosition] = useState({lat:40.748391732096245,lng:-73.98570731534348})
+    const [newMarker, setNewMarker] = useState('')
+    const [response, setResponse] = useState(null)
 
+    const makeMarker = (e) => {
+        const lat = e.latLng.lat();
+        const lng = e.latLng.lng();
+        console.log({lat, lng})
+        setNewMarker({lat, lng})
+        console.log(newMarker)
+      }
+      
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
+      })
 
-    //     const data = await dispatch(addPhotoThunk( url, description, id, geo_location, placeName))
-    //     await dispatch(getSessionPhotosThunk(id))
+      const containerStyle = {
+        width: '600px',
+        height: '400px'
+      };
 
-    //     if (data) {
-    //         setErrors(data);
-    //       }
-    // }
+      const [map, setMap] = useState(null)
+
+      const onUnmount = useCallback(function callback(map) {
+        setMap(null)
+      }, [])
+    
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -115,6 +136,33 @@ export default function AddPhotoForm() {
                 placeholder="Paris, France"
                 maxLength='50'
                 ></textarea>
+                <div className="map_page__container">
+                    <div id="map-page-container-inner" style={{ height: '600px', width: '400px' }}>
+                        {isLoaded ?<GoogleMap
+                            mapContainerStyle={containerStyle}
+                            clickableIcons={true}
+                            zoom={12}
+                            center={currentPosition}
+                            options={{styles: mapStyle}}
+                            onUnmount={onUnmount}
+                            >
+                            <Marker 
+                                key={id} 
+                                position={currentPosition}
+                                title={"new marker"}
+                                icon={{
+                                    path: 'M 100 100 L 300 100 L 200 300 z',
+                                    fillColor: "red",
+                                    fillOpacity: 1,
+                                    scale: .2,
+                                    strokeColor: 'gold',
+                                    strokeWeight: 2
+                                }}
+                                onClick={(e)=>makeMarker(e)}   
+                                streetView={false} ></Marker>
+                        </GoogleMap>:null}
+                    </div>
+                </div>
                 <button className="add-submit" type="submit" value="submit">Submit</button>
                 {(photoLoading) && <p>Loading...</p>}
             </form>

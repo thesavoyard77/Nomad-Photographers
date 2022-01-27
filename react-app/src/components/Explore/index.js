@@ -20,11 +20,7 @@ const length = photos.length;
 
 
 
-useEffect(() => {
-    dispatch(getPhotosThunk())
-    dispatch(getUsersThunk())
-    return
-}, [dispatch])
+
 
 let locationArray = [];
 
@@ -41,6 +37,24 @@ const locationMap = () => {
 locationMap()
 
 const [currentPosition, setCurrentPosition] = useState(locationArray[0])
+const [ locationPopulated, setLocationPopulated ] = useState(false)
+
+useEffect(() => {
+    dispatch(getPhotosThunk())
+    dispatch(getUsersThunk())
+    return
+}, [dispatch])
+
+useEffect(() => {
+    
+    if (locationPopulated === false && locationArray.length > 1) {
+
+    setCurrentPosition(locationArray[0])
+    setLocationPopulated(true)
+    
+    }
+},[locationArray, locationPopulated]);
+
 
 const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -101,7 +115,7 @@ return (
                     >
                     <Marker 
                         position={currentPosition}
-                        title="Marker of Mark"
+                        title="Camera Marker"
                         icon={{
                             url: CameraIcon,
                             scaledSize: new window.google.maps.Size(25, 25)
