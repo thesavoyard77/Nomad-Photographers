@@ -47,6 +47,17 @@ locationMap()
 
 
 const [currentPosition, setCurrentPosition] = useState(locationArray[0])
+const [ locationPopulated, setLocationPopulated ] = useState(false)
+
+useEffect(() => {
+    
+    if (locationPopulated === false && locationArray.length > 1) {
+
+    setCurrentPosition(locationArray[0])
+    setLocationPopulated(true)
+    
+    }
+},[locationArray, locationPopulated]);
 
 const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -116,12 +127,12 @@ return (
                     clickableIcons={true}
                     zoom={12}
                     center={currentPosition}
-                    options={{styles: mapStyle}}
+                    options={{styles: mapStyle, disableDefaultUI: true, fullscreenControl: true}}
                     onUnmount={onUnmount}
                     >
                 <Marker 
                     position={currentPosition}
-                    title="Marker of Mark"
+                    title="Camera Icon"
                     icon={{
                         url: CameraIcon,
                         scaledSize: new window.google.maps.Size(25, 25)

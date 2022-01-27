@@ -5,6 +5,15 @@ import { getSessionPhotosThunk } from '../../store/photo';
 import CameraIcon from './public/cameraIcon.png'
 import mapStyle from "./public/mapStyle";
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete'
+import {
+    Combobox,
+    ComboboxInput,
+    ComboboxPopover,
+    ComboboxList,
+    ComboboxOption,
+    ComboboxOptionText,
+  } from "@reach/combobox";
 import Geocode from 'react-geocode'
 import './PhotoForm.css'
 
@@ -20,22 +29,17 @@ export default function AddPhotoForm() {
     const [placeName, setPlaceName] = useState()
     const [ photoLoading, setPhotoLoading ] = useState(false)
     const [currentPosition, setCurrentPosition] = useState({lat:40.748391732096245,lng:-73.98570731534348})
-    const [newMarker, setNewMarker] = useState('')
-    const [response, setResponse] = useState(null)
 
-    const makeMarker = (e) => {
-        const lat = e.latLng.lat();
-        const lng = e.latLng.lng();
-        console.log({lat, lng})
-        setNewMarker({lat, lng})
-        console.log(newMarker)
-      }
+
+ 
       
 
-    const { isLoaded } = useJsApiLoader({
+    const { isLoaded, loadError } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
+
       })
+
 
       const containerStyle = {
         width: '600px',
@@ -48,7 +52,8 @@ export default function AddPhotoForm() {
         setMap(null)
       }, [])
     
-
+      const [marker, setMarker] = useState({lat:40.748391732096245,lng:-73.98570731534348})
+      console.log(JSON.stringify(marker))
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -95,7 +100,6 @@ export default function AddPhotoForm() {
         setPhoto(file)
     }
 
-
     const updateDescription = (e) => {
         setDescription(e.target.value)
     }
@@ -105,7 +109,7 @@ export default function AddPhotoForm() {
         setPlaceName(e.target.value)
     }
 
-
+    if (loadError) return "Error loading maps"
     return  (
         <div className="add-photo-wrapper">
             <form className="add-photo-form" onSubmit={handleSubmit}>
@@ -140,26 +144,26 @@ export default function AddPhotoForm() {
                     <div id="map-page-container-inner" style={{ height: '600px', width: '400px' }}>
                         {isLoaded ?<GoogleMap
                             mapContainerStyle={containerStyle}
-                            clickableIcons={true}
+                            clickableIcons={false}
                             zoom={12}
                             center={currentPosition}
-                            options={{styles: mapStyle}}
+                            options={{styles: mapStyle, disableDefaultUI: true, fullscreenControl: true, zoomControl: true}}
                             onUnmount={onUnmount}
+                            onClick={(event)=> {
+                                setMarker({
+                                    lat: event.latLng.lat(),
+                                    lng: event.latLng.lng(),
+                                })
+                            }}
                             >
-                            <Marker 
-                                key={id} 
-                                position={currentPosition}
-                                title={"new marker"}
-                                icon={{
-                                    path: 'M 100 100 L 300 100 L 200 300 z',
-                                    fillColor: "red",
-                                    fillOpacity: 1,
-                                    scale: .2,
-                                    strokeColor: 'gold',
-                                    strokeWeight: 2
-                                }}
-                                onClick={(e)=>makeMarker(e)}   
-                                streetView={false} ></Marker>
+                            <Marker
+                            key={marker.id}
+                            icon={{
+                                url: CameraIcon,
+                                scaledSize: new window.google.maps.Size(25, 25)
+                            }}
+                            position={{ lat:marker.lat,lng:marker.lng }}
+                            ></Marker>
                         </GoogleMap>:null}
                     </div>
                 </div>

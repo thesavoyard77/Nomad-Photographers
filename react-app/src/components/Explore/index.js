@@ -110,7 +110,7 @@ return (
                     mapContainerStyle={containerStyle}
                     zoom={12}
                     center={currentPosition}
-                    options={{styles: mapStyle}}
+                    options={{styles: mapStyle, disableDefaultUI: true, fullscreenControl: true}}
                     onUnmount={onUnmount}
                     >
                     <Marker 
