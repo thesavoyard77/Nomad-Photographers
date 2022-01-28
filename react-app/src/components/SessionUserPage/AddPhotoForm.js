@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
+import CameraIcon from './public/cameraIcon.png'
+import mapStyle from "./public/mapStyle";
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import './PhotoForm.css'
 
 export default function AddPhotoForm() {
@@ -9,25 +12,36 @@ export default function AddPhotoForm() {
     const [ photo, setPhoto ] = useState(null)
     const history = useHistory();
     const dispatch = useDispatch();
-    // const [url, setUrl] = useState()
     const [ description, setDescription ] = useState()
     const sessionUser = useSelector((state) => state.session?.user);
     const id = sessionUser?.id
-    const geo_location = "45.83267462290539, 6.860941236982223"
     const [placeName, setPlaceName] = useState()
     const [ photoLoading, setPhotoLoading ] = useState(false)
+    const [currentPosition, setCurrentPosition] = useState({lat:40.748391732096245,lng:-73.98570731534348})
 
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
+    const { isLoaded, loadError } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
 
-    //     const data = await dispatch(addPhotoThunk( url, description, id, geo_location, placeName))
-    //     await dispatch(getSessionPhotosThunk(id))
+      })
+      
 
-    //     if (data) {
-    //         setErrors(data);
-    //       }
-    // }
+      const containerStyle = {
+        width: '600px',
+        height: '400px'
+      };
+
+      const [map, setMap] = useState(null)
+
+      const onUnmount = useCallback(function callback(map) {
+        setMap(null)
+      }, []);
+    
+      const [marker, setMarker] = useState({lat:40.748391732096245,lng:-73.98570731534348})
+
+    const geo_location = JSON.stringify(marker)
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -76,7 +90,6 @@ export default function AddPhotoForm() {
         setPhoto(file)
     }
 
-
     const updateDescription = (e) => {
         setDescription(e.target.value)
     }
@@ -86,7 +99,15 @@ export default function AddPhotoForm() {
         setPlaceName(e.target.value)
     }
 
+    const onMapClick = React.useCallback((event)=> {
+        setMarker({
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+        })
+    },[]);
 
+
+    if (loadError) return "Error loading maps"
     return  (
         <div className="add-photo-wrapper">
             <form className="add-photo-form" onSubmit={handleSubmit}>
@@ -117,6 +138,30 @@ export default function AddPhotoForm() {
                 placeholder="Paris, France"
                 maxLength='50'
                 ></textarea>
+                <div className="map_page__container">
+                    <div id="map-page-container-inner" style={{ height: '600px', width: '400px' }}>
+                        {isLoaded ?<GoogleMap
+                            mapContainerStyle={containerStyle}
+                            clickableIcons={false}
+                            zoom={12}
+                            center={currentPosition}
+                            options={{styles: mapStyle, disableDefaultUI: true, fullscreenControl: true, zoomControl: true}}
+                            onUnmount={onUnmount}
+                            onClick={onMapClick}
+                            >
+                            <Marker
+                            key={marker.id}
+                            icon={{
+                                url: CameraIcon,
+                                scaledSize: new window.google.maps.Size(30, 30),
+                                origin: new window.google.maps.Point(0, 0),
+                                anchor: new window.google.maps.Point(15, 15)
+                            }}
+                            position={{ lat:marker.lat,lng:marker.lng }}
+                            ></Marker>
+                        </GoogleMap>:null}
+                    </div>
+                </div>
                 <button className="add-submit" type="submit" value="submit">Submit</button>
                 {(photoLoading) && <p>Loading...</p>}
             </form>

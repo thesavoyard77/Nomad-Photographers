@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import ModalCapture from "./EditModalForm";
 import CommentsModal from "../Comments/SessionCommentModal";
 import '../Explore/Carousels.css'
 import { getSessionPhotosThunk } from "../../store/photo";
-import {BiLeftArrow, BiRightArrow} from 'react-icons/bi'
+import {BiLeftArrow, BiRightArrow} from 'react-icons/bi';
+import CameraIcon from './public/cameraIcon.png'
+import mapStyle from "./public/mapStyle";
 import AddPhotoForm from "../SessionUserPage/AddPhotoForm";
 import Modal from "react-modal";
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
 
 
@@ -19,29 +22,67 @@ const [ picture, setPicture ] = useState(0)
 const length = photos.length;
 const [ modalIsOpen, setModalIsOpen ] = useState(false)
 
+
+
+
+
 useEffect(() => {
     dispatch(getSessionPhotosThunk(id))
     return
 }, [dispatch, id])
 
+let locationArray = []
 
+const locationMap = () => {
+    photos?.map(photo => {
+      let geo_location = JSON.parse(photo?.geo_location)
+      locationArray.push(geo_location)
+      return
+    })
+}
+locationMap()
+
+
+const [currentPosition, setCurrentPosition] = useState(locationArray[0])
+const [ locationPopulated, setLocationPopulated ] = useState(false)
+
+useEffect(() => {
+    
+    if (locationPopulated === false && locationArray.length > 1) {
+
+    setCurrentPosition(locationArray[0])
+    setLocationPopulated(true)
+    
+    }
+},[locationArray, locationPopulated]);
+
+const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
+  })
+  
+  const containerStyle = {
+    width: '400px',
+    height: '250px'
+  };
+
+  const [map, setMap] = useState(null)
+
+  const onUnmount = useCallback(function callback(map) {
+    setMap(null)
+  }, [])
 
 
 const nextSlide = () => {
     setPicture(picture === length - 1 ? 0 : picture + 1)
+    setCurrentPosition(locationArray[picture === length - 1 ? 0 : picture + 1])
 }
 
 const prevSlide = () => {
     setPicture(picture === 0 ? length -1 : picture - 1)
+    setCurrentPosition(locationArray[picture === 0 ? length -1 : picture - 1])
 }
 
-
-// if(!photos.length) {
-//     return null;
-// }
-
-
-//hidden={!index === picture} works as well
 Modal.setAppElement('#root')
 return (
 <section id="grandfather">
@@ -70,12 +111,33 @@ return (
             <div className={index === picture ? 'slide active' : 'slide'} key={index}>
                 <div className="inner">
               {index === picture && (<img src={photo?.url} alt='travel' className="current-image"></img>)}
-              {sessionUser &&  <h2 className="photographer-name">{sessionUser?.username?.split("")[0].toUpperCase() + sessionUser?.username?.slice(1)}</h2>}
+              {sessionUser &&  <h2 className="photographer-name">Photo by {sessionUser?.username?.split("")[0].toUpperCase() + sessionUser?.username?.slice(1)}</h2>}
               <h3 className="location-name">{photo?.place_name}</h3>
               <h5 className="description-text"><hr className="carousel-hr"></hr>{photo?.description}<hr className="carousel-hr"></hr></h5>
                 </div>
                 <ModalCapture photo={photos[picture]} />
                 <CommentsModal photo={photos[picture]} />
+                <div className="map_page__container-session">
+                <div id="map-page-container-inner" style={{ height: '400px', width: '250px' }}>
+                {isLoaded && currentPosition ?<GoogleMap
+                    mapContainerStyle={containerStyle}
+                    clickableIcons={true}
+                    zoom={12}
+                    center={currentPosition}
+                    options={{styles: mapStyle, disableDefaultUI: true, fullscreenControl: true}}
+                    onUnmount={onUnmount}
+                    >
+                <Marker 
+                    position={currentPosition}
+                    title="Camera Icon"
+                    icon={{
+                        url: CameraIcon,
+                        scaledSize: new window.google.maps.Size(25, 25)
+                    }}
+                    streetView={false} />
+                </GoogleMap>:null}
+                </div>
+                </div>
                 {sessionUser &&         
                 <div className="add-photo-modal">
                     <button className="add-modal-button" id="upload-photos" onClick={() => setModalIsOpen(true)}>...Upload a Photo</button>
@@ -83,18 +145,19 @@ return (
                         style={{
                             overlay: {
                                 position: 'fixed',
-                                top: 100,
-                                left: 150,
+                                top: 50,
+                                left: -1000,
                                 right: 50,
-                                bottom: 100,
-                                backgroundColor: 'rgba(1, 1, 1, 0.750.33)'
+                                bottom: 50,
+                                backgroundColor: 'rgba(1, 1, 1, 0.750.33)',
+                                zIndex: 5,
                             },
                             content: {
                                 position: 'absolute',
-                                top: '15%',
-                                left: '55%',
-                                right: '10%',
-                                bottom: '5%',
+                                top: '0%',
+                                left: '51%',
+                                right: '2%',
+                                bottom: '0%',
                                 border: '5px solid #BBA084',
                                 background: '#fff',
                                 overflow: 'auto',

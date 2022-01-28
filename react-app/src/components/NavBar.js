@@ -12,7 +12,6 @@ const NavBar = () => {
 const sessionUser = useSelector((state) => state.session?.user);
 const [ modalIsOpen, setModalIsOpen ] = useState(false)
 
-console.log(sessionUser)
 
 Modal.setAppElement('#root')
   return (

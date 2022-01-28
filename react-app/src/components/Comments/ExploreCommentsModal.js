@@ -10,7 +10,6 @@ export default function CommentsModal({ photo }) {
     const commentsArr = photo?.comments
     const photo_id = photo?.id
 
-//  console.log(photo)
 
 return (
     <>
