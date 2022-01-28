@@ -20,16 +20,12 @@ export default function AddPhotoForm() {
     const [currentPosition, setCurrentPosition] = useState({lat:40.748391732096245,lng:-73.98570731534348})
 
 
- 
-      
-
     const { isLoaded, loadError } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
 
       })
       
-
 
       const containerStyle = {
         width: '600px',
@@ -40,7 +36,7 @@ export default function AddPhotoForm() {
 
       const onUnmount = useCallback(function callback(map) {
         setMap(null)
-      }, [])
+      }, []);
     
       const [marker, setMarker] = useState({lat:40.748391732096245,lng:-73.98570731534348})
 
@@ -108,10 +104,6 @@ export default function AddPhotoForm() {
         })
     },[]);
 
-    const mapRef = React.useRef();
-    const onMapLoad = React.useCallback((map) => {
-        mapRef.current = map;
-    },[]);
 
     if (loadError) return "Error loading maps"
     return  (
@@ -154,7 +146,6 @@ export default function AddPhotoForm() {
                             options={{styles: mapStyle, disableDefaultUI: true, fullscreenControl: true, zoomControl: true}}
                             onUnmount={onUnmount}
                             onClick={onMapClick}
-                            onLoad={onMapLoad}
                             >
                             <Marker
                             key={marker.id}

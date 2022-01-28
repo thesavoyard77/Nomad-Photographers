@@ -189,6 +189,13 @@
     top: 122%;
 }
 
+.map_page__container-session {
+    position: absolute;
+    right: -33%;
+    top: 122%;
+}
+
+
 
 .photographer-name {
     color: rgb(187, 160, 132);
@@ -206,7 +213,7 @@
     width: 20vw;
     position: absolute;
     right: -42%;
-    top: 6%;
+    top: 4%;
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.5rem;
 }

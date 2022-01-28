@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { editPhotoThunk, deletePhotosThunk } from '../../store/photo';
 import { useDispatch } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
+import CameraIcon from './public/cameraIcon.png'
+import mapStyle from "./public/mapStyle";
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import './PhotoForm.css'
 
 export default function EditPhotoForm({photo}) {
@@ -13,18 +16,42 @@ export default function EditPhotoForm({photo}) {
     const {id} = photo;
     const [ description, setDescription ] = useState(photo.description)
     const [placeName, setPlaceName] = useState(photo.place_name)
+    const starterLoc = JSON.parse(photo?.geo_location)
+    const [currentPosition, setCurrentPosition] = useState(starterLoc)
 
-//  console.log(photo)
+   
+
+    const { isLoaded, loadError } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
+
+      });
+
+      
+      const containerStyle = {
+        width: '600px',
+        height: '400px'
+      };
+      
+      const [map, setMap] = useState(null)
+
+      const onUnmount = useCallback(function callback(map) {
+        setMap(null)
+      }, []);
+
+      const [marker, setMarker] = useState(starterLoc)
+
+      const geo_location = JSON.stringify(marker)
 
     const payload = {
         id: id,
         url: photo.url,
         description: description,
         user_id: photo.user_id,
-        geo_location: photo.geo_location,
+        geo_location: geo_location,
         place_name: placeName
     }
-    // console.log(photo?.url)
+  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -52,6 +79,12 @@ export default function EditPhotoForm({photo}) {
         setPlaceName(e.target.value)
     }
 
+    const onMapClick = React.useCallback((event)=> {
+        setMarker({
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+        })
+    },[]);
 
     return  (
         <div className="edit-photo-wrapper">
@@ -77,6 +110,30 @@ export default function EditPhotoForm({photo}) {
                 placeholder={photo.place_name}
                 maxLength='100'
                 ></textarea>
+                 <div className="map_page__container">
+                    <div id="map-page-container-inner" style={{ height: '600px', width: '400px' }}>
+                        {isLoaded ?<GoogleMap
+                            mapContainerStyle={containerStyle}
+                            clickableIcons={false}
+                            zoom={12}
+                            center={currentPosition}
+                            options={{styles: mapStyle, disableDefaultUI: true, fullscreenControl: true, zoomControl: true}}
+                            onUnmount={onUnmount}
+                            onClick={onMapClick}
+                            >
+                            <Marker
+                            key={marker.id}
+                            icon={{
+                                url: CameraIcon,
+                                scaledSize: new window.google.maps.Size(30, 30),
+                                origin: new window.google.maps.Point(0, 0),
+                                anchor: new window.google.maps.Point(15, 15)
+                            }}
+                            position={{ lat:marker.lat,lng:marker.lng }}
+                            ></Marker>
+                        </GoogleMap>:null}
+                    </div>
+                </div>
                 <button className="edit-submit" type="submit" value="submit">Submit</button>
                 <button className="delete-photo" onClick={handleDelete}>Delete</button>
             </form>

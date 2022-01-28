@@ -117,7 +117,7 @@ return (
                 </div>
                 <ModalCapture photo={photos[picture]} />
                 <CommentsModal photo={photos[picture]} />
-                <div className="map_page__container">
+                <div className="map_page__container-session">
                 <div id="map-page-container-inner" style={{ height: '400px', width: '250px' }}>
                 {isLoaded && currentPosition ?<GoogleMap
                     mapContainerStyle={containerStyle}
@@ -155,10 +155,10 @@ return (
                             },
                             content: {
                                 position: 'absolute',
-                                top: '5%',
-                                left: '55%',
-                                right: '10%',
-                                bottom: '5%',
+                                top: '0%',
+                                left: '51%',
+                                right: '2%',
+                                bottom: '0%',
                                 border: '5px solid #BBA084',
                                 background: '#fff',
                                 overflow: 'auto',
