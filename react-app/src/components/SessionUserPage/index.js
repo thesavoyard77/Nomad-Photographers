@@ -151,7 +151,6 @@ return (
                                 bottom: 50,
                                 backgroundColor: 'rgba(1, 1, 1, 0.750.33)',
                                 zIndex: 5,
-                                overflow: 'hidden'
                             },
                             content: {
                                 position: 'absolute',
