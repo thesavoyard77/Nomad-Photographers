@@ -5,16 +5,6 @@ import { getSessionPhotosThunk } from '../../store/photo';
 import CameraIcon from './public/cameraIcon.png'
 import mapStyle from "./public/mapStyle";
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
-import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete'
-import {
-    Combobox,
-    ComboboxInput,
-    ComboboxPopover,
-    ComboboxList,
-    ComboboxOption,
-    ComboboxOptionText,
-  } from "@reach/combobox";
-import Geocode from 'react-geocode'
 import './PhotoForm.css'
 
 export default function AddPhotoForm() {
@@ -25,7 +15,6 @@ export default function AddPhotoForm() {
     const [ description, setDescription ] = useState()
     const sessionUser = useSelector((state) => state.session?.user);
     const id = sessionUser?.id
-    const geo_location = "45.83267462290539, 6.860941236982223"
     const [placeName, setPlaceName] = useState()
     const [ photoLoading, setPhotoLoading ] = useState(false)
     const [currentPosition, setCurrentPosition] = useState({lat:40.748391732096245,lng:-73.98570731534348})
@@ -39,6 +28,7 @@ export default function AddPhotoForm() {
         googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
 
       })
+      
 
 
       const containerStyle = {
@@ -53,7 +43,9 @@ export default function AddPhotoForm() {
       }, [])
     
       const [marker, setMarker] = useState({lat:40.748391732096245,lng:-73.98570731534348})
-      console.log(JSON.stringify(marker))
+
+    const geo_location = JSON.stringify(marker)
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -109,6 +101,18 @@ export default function AddPhotoForm() {
         setPlaceName(e.target.value)
     }
 
+    const onMapClick = React.useCallback((event)=> {
+        setMarker({
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+        })
+    },[]);
+
+    const mapRef = React.useRef();
+    const onMapLoad = React.useCallback((map) => {
+        mapRef.current = map;
+    },[]);
+
     if (loadError) return "Error loading maps"
     return  (
         <div className="add-photo-wrapper">
@@ -149,18 +153,16 @@ export default function AddPhotoForm() {
                             center={currentPosition}
                             options={{styles: mapStyle, disableDefaultUI: true, fullscreenControl: true, zoomControl: true}}
                             onUnmount={onUnmount}
-                            onClick={(event)=> {
-                                setMarker({
-                                    lat: event.latLng.lat(),
-                                    lng: event.latLng.lng(),
-                                })
-                            }}
+                            onClick={onMapClick}
+                            onLoad={onMapLoad}
                             >
                             <Marker
                             key={marker.id}
                             icon={{
                                 url: CameraIcon,
-                                scaledSize: new window.google.maps.Size(25, 25)
+                                scaledSize: new window.google.maps.Size(30, 30),
+                                origin: new window.google.maps.Point(0, 0),
+                                anchor: new window.google.maps.Point(15, 15)
                             }}
                             position={{ lat:marker.lat,lng:marker.lng }}
                             ></Marker>

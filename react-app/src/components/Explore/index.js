@@ -26,12 +26,9 @@ let locationArray = [];
 
 const locationMap = () => {
     photos?.map(photo => {
-      let oneLatitude = photo?.geo_location?.split(',')[0]
-      let oneLongitude = photo?.geo_location?.split(',')[1]
-      oneLatitude = +oneLatitude
-      oneLongitude = +oneLongitude
-      locationArray.push({lat:oneLatitude,lng:oneLongitude})
-      return
+        let geo_location = JSON.parse(photo?.geo_location)
+        locationArray.push(geo_location)
+        return
     })
 }
 locationMap()
