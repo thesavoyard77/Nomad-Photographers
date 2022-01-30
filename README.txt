@@ -38,6 +38,10 @@ This is the starter for the Flask React project.
    flask run
    ```
 
+   heroku run -a nomad-photographers flask seed undo
+   heroku run -a nomad-photographers flask db upgrade
+   heroku run -a nomad-photographers flask seed all
+
 6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 ***
