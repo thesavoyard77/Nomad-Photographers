@@ -53,6 +53,8 @@ export default function AddPhotoForm() {
 
         if (!photo) errors.push('Please upload a photo to continue.')
         if (photo && !acceptedFiles.includes(fileType)) errors.push('Please uplod a photo in pdf, png, jpg, jpeg, gif formats')
+        if (!description) errors.push('Please fill out the Description field')
+        if (!placeName) errors.push('Please fill out the Place Name field')
         if(errors.length) {
             setErrors(errors)
             return null
