@@ -13,9 +13,9 @@ ___
 
 Nomad-Photographers is a full stack application that will allow users to upload their travel photographs, map where the photo was taken, brows others photographs, and follow other users. 
 
-Nomad-Photographers features custome carousel, dymanically loaded meta-information on each photo and will impliment even more features in the near future.
+Nomad-Photographers features custom carousel, dymanically loaded meta-information on each photo and will impliment even more features in the near future.
 
-Nomad-Photographers will feature [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial) and photo uploads via [Amazon S3 media sharing](https://aws.amazon.com/media-sharing/).
+Nomad-Photographers features [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial) and photo uploads via [Amazon S3 media sharing](https://aws.amazon.com/media-sharing/).
 
 The social tab will allow user to see updates on the people they follow, while the search function will allow them to brows locations to decide their next trip.
 
