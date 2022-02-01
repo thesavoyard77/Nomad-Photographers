@@ -338,9 +338,6 @@ module.exports = function (webpackEnv) {
       },
       plugins: [
 
-        new webpack.DefinePlugin({
-          'process.env.REACT_APP_MAPS_KEY': JSON.stringify(process.env.REACT_APP_MAPS_KEY),
-        }),
     
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
         // guards against forgotten dependencies and such.
@@ -564,6 +561,9 @@ module.exports = function (webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
+      new webpack.DefinePlugin({
+        'process.env.REACT_APP_MAPS_KEY': JSON.stringify(process.env.REACT_APP_MAPS_KEY),
+      }),
       new HtmlWebpackPlugin(
         Object.assign(
           {},
