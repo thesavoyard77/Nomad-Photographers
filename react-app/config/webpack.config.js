@@ -1,5 +1,4 @@
 'use strict';
-const Dotenv = require('dotenv-webpack')
 
 
 const fs = require('fs');
@@ -338,7 +337,11 @@ module.exports = function (webpackEnv) {
         ...(modules.webpackAliases || {}),
       },
       plugins: [
-        new Dotenv(),
+
+        new webpack.DefinePlugin({
+          'process.env.REACT_APP_MAPS_KEY': JSON.stringify(process.env.REACT_APP_MAPS_KEY),
+        }),
+    
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
         // guards against forgotten dependencies and such.
         PnpWebpackPlugin,
