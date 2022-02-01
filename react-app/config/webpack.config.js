@@ -231,11 +231,6 @@ module.exports = function (webpackEnv) {
       // module chunks which are built will work in web workers as well.
       globalObject: 'this',
     },
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.REACT_APP_MAPS_KEY': JSON.stringify(process.env.REACT_APP_MAPS_KEY),
-      }),
-    ],
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
