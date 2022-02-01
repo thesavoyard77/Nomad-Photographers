@@ -101,9 +101,9 @@ Modal.setAppElement('#root')
                 content: {
                     position: 'absolute',
                     top: '-5%',
-                    left: '77%',
+                    left: '50%',
                     right: '6%',
-                    bottom: '55%',
+                    bottom: '35%',
                     border: '5px solid #BBA084',
                     background: '#fff',
                     overflow: 'auto',
