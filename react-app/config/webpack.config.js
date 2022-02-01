@@ -113,6 +113,7 @@ module.exports = function (webpackEnv) {
         loader: require.resolve('css-loader'),
         options: cssOptions,
       },
+      
       {
         // Options for PostCSS as we reference these options twice
         // Adds vendor prefixing based on your specified browser support in
@@ -230,6 +231,11 @@ module.exports = function (webpackEnv) {
       // module chunks which are built will work in web workers as well.
       globalObject: 'this',
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env.REACT_APP_MAPS_KEY': JSON.stringify(process.env.REACT_APP_MAPS_KEY),
+      }),
+    ],
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
@@ -561,9 +567,6 @@ module.exports = function (webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
-      new webpack.DefinePlugin({
-        'process.env.REACT_APP_MAPS_KEY': JSON.stringify(process.env.REACT_APP_MAPS_KEY),
-      }),
       new HtmlWebpackPlugin(
         Object.assign(
           {},
