@@ -1,0 +1,5 @@
+in front end run npm run eject
+
+https://www.npmjs.com/package/dotenv-webpack
+
+npm install dotenv-webpack --save-dev
