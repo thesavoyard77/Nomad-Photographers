@@ -62,7 +62,7 @@ Modal.setAppElement('#root')
                     content: {
                         position: 'absolute',
                         top: '15%',
-                        left: '50%',
+                        left: '55%',
                         right: '10%',
                         bottom: '20%',
                         border: '5px solid #BBA084',
