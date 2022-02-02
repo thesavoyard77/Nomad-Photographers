@@ -1,6 +1,6 @@
 'use strict';
 
-
+const Dotenv = require('dotenv-webpack')
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -232,6 +232,7 @@ module.exports = function (webpackEnv) {
       globalObject: 'this',
     },
     plugins: [
+      new Dotenv(),
             new webpack.DefinePlugin({
         'process.env.REACT_APP_MAPS_KEY': JSON.stringify(process.env.REACT_APP_MAPS_KEY),
       }),
