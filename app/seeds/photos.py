@@ -3,15 +3,15 @@ from app.models import db, Photo
 
 # Adds a demo user, you can add other users here if you want
 def seed_photos():
-    chris = Photo(
+    budapest = Photo(
         url='https://media.cntraveler.com/photos/5b8576320c5e123ef6ed3d55/master/pass/Budapest_GettyImages-512278610.jpg',
         description='The Parliament building in Budapest', user_id='4', geo_location='{"lat":47.505606460361754,"lng":19.039616367359486}',
          place_name='Budapest' )
-    marnie = Photo(
+    london = Photo(
         url='https://www.fodors.com/assets/destinations/2869/tower-bridge-london-england_980x650.jpg',
         description='London Bridge, not really but a bridge in London', user_id='2', geo_location='{"lat":51.48714347929283,"lng":0.1261351956304025}',
          place_name='London' )
-    bobbie = Photo(
+    tokyo = Photo(
         url='https://i.insider.com/5d26280921a86107bb51bd92?width=700',
         description='The electric atmosphere of Tokyo', user_id='3', geo_location='{"lat":35.680646272238285,"lng":139.76926630965156}',
          place_name='Tokyo' )
@@ -29,9 +29,9 @@ def seed_photos():
     )
   
 
-    db.session.add(chris)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(budapest)
+    db.session.add(london)
+    db.session.add(tokyo)
     db.session.add(Berlin)
     db.session.add(Sao_Paulo)
     db.session.add(Detroit)
