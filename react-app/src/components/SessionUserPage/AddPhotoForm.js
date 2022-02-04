@@ -138,8 +138,8 @@ export default function AddPhotoForm() {
                 placeholder="Paris, France"
                 maxLength='50'
                 ></textarea>
-                <div className="map_page__container">
-                    <div id="map-page-container-inner" style={{ height: '600px', width: '400px' }}>
+                <div className="map_page__container-add">
+                    <div id="map-page-container-inner-add" style={{ height: '600px', width: '400px' }}>
                         {isLoaded ?<GoogleMap
                             mapContainerStyle={containerStyle}
                             clickableIcons={false}

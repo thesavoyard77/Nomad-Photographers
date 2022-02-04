@@ -37,18 +37,34 @@
 
 
 .add-description, .add-place-name, .edit-place-name, .edit-description {
-    width: 70%;
+    width: 25%;
     height: 25%;
     font-family: 'Cormorant Garamond', serif;
     border-radius: 3px;
 }
 
 .form-label {
-    margin-top: .7rem;
+    margin-top: .3rem;
+    margin-bottom: .3rem;
 }
 .add-submit {
     position: absolute;
-    left: 37%;
-    top: 120%;
+    left: 47%;
+    top: 295%;
 }
+
+.map_page__container-add {
+    position: absolute;
+    top: 110%;
+    left: 20%;
+}
+
+.add-photo-wrapper {
+    position: relative;
+}
+
+/* #map-page-container-inner-add {
+    position: absolute;
+    left: -110%;
+} */
 
