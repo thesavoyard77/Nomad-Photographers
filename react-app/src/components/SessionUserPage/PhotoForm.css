@@ -52,11 +52,6 @@
     position: relative;
 }
 
-.edit-submit {
-    position: absolute;
-    left: 40%;
-    top: 265%;
-}
 
 .map_page__container-edit {
     position: absolute;
@@ -76,5 +71,11 @@
     color: black;
     position: absolute;
     left: 55%;
-    top: 265%;
+    top: 285%;
+}
+
+.edit-submit {
+    position: absolute;
+    left: 40%;
+    top: 285%;
 }
