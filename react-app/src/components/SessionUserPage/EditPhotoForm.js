@@ -110,8 +110,8 @@ export default function EditPhotoForm({photo}) {
                 placeholder={photo.place_name}
                 maxLength='100'
                 ></textarea>
-                 <div className="map_page__container">
-                    <div id="map-page-container-inner" style={{ height: '600px', width: '400px' }}>
+                 <div className="map_page__container-edit">
+                    <div id="map-page-container-inner-edit" style={{ height: '600px', width: '400px' }}>
                         {isLoaded ?<GoogleMap
                             mapContainerStyle={containerStyle}
                             clickableIcons={false}

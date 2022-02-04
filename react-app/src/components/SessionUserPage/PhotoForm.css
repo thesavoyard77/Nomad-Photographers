@@ -1,10 +1,4 @@
-.delete-photo {
-    width: 5rem;
-    height: 2.5rem;
-    border-radius: 4px;
-    background-color: rgb(248, 15, 15);
-    color: black;
-}
+
 
 .edit-submit {
     width: 5rem;
@@ -17,11 +11,6 @@
     left: 25%;
 }
 
-.delete-photo {
-    position: absolute;
-    top: 110%;
-    right: 25%;
-}
 
 .add-photo-form, .edit-photo-form {
     width: 100%;
@@ -59,12 +48,33 @@
     left: 20%;
 }
 
+.edit-photo-wrapper {
+    position: relative;
+}
+
+.edit-submit {
+    position: absolute;
+    left: 40%;
+    top: 265%;
+}
+
+.map_page__container-edit {
+    position: absolute;
+    top: 110%;
+    left: 20%;
+}
+
 .add-photo-wrapper {
     position: relative;
 }
 
-/* #map-page-container-inner-add {
+.delete-photo {
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    background-color: rgb(248, 15, 15);
+    color: black;
     position: absolute;
-    left: -110%;
-} */
-
+    left: 55%;
+    top: 265%;
+}
