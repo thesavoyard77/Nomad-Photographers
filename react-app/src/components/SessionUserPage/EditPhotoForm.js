@@ -19,14 +19,12 @@ export default function EditPhotoForm({photo}) {
     const starterLoc = JSON.parse(photo?.geo_location)
     const [currentPosition, setCurrentPosition] = useState(starterLoc)
 
-   
 
     const { isLoaded, loadError } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
-
       });
-
+      
       
       const containerStyle = {
         width: '600px',
