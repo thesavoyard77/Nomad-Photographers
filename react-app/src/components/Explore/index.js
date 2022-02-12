@@ -15,12 +15,22 @@ const dispatch = useDispatch();
 const photos = useSelector(store => Object.values(store?.photo))
 
 const [ picture, setPicture ] = useState(0)
+const [ key, setKey ] = useState('')
 const length = photos.length;
-// let id;
 
 
 
 
+
+useEffect(()=> {
+    (async () => {
+        const resonse = await fetch('/api/photos/key')
+         let data = await resonse.json()
+         setKey(data)
+        console.log(data, "111111111111111111111111111111111111")
+    })
+})
+console.log(key, "22222222222222222222222")
 
 let locationArray = [];
 
