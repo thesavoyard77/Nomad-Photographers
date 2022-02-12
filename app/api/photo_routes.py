@@ -19,7 +19,11 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-
+@photo_routes.route('/key')
+def key():
+        REACT_APP_MAPS_KEY=os.environ.get("REACT_APP_MAPS_KEY")
+        print(REACT_APP_MAPS_KEY, "<=========================================")
+        return f"{REACT_APP_MAPS_KEY}"
 
 @photo_routes.route('')
 def photos():
