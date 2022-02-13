@@ -26,7 +26,7 @@ useEffect(() => {
         })();
     }
 })
-let REACT_APP_MAPS_KEY = key.api
+
 
 
 let locationArray = [];
@@ -58,6 +58,9 @@ useEffect(() => {
     
     }
 },[locationArray, locationPopulated]);
+
+
+let REACT_APP_MAPS_KEY = key.api
 
 
 const { isLoaded } = useJsApiLoader({
