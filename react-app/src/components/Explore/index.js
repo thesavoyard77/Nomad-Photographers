@@ -13,9 +13,20 @@ export default function SessionUserPage() {
 
 const dispatch = useDispatch();
 const photos = useSelector(store => Object.values(store?.photo))
-
+let [ key, setKey ] = useState('')
 const [ picture, setPicture ] = useState(0)
 const length = photos.length;
+
+useEffect(() => {
+    if (!key) {
+        (async () => {
+            const response = await fetch('api/photos/key');
+            const keyResponse = await response.json()
+            setKey(keyResponse)
+        })();
+    }
+})
+let REACT_APP_MAPS_KEY = key.api
 
 
 let locationArray = [];
