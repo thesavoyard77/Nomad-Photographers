@@ -9,11 +9,12 @@ import CameraIcon from './public/cameraIcon.png'
 import mapStyle from "./public/mapStyle";
 import AddPhotoForm from "../SessionUserPage/AddPhotoForm";
 import Modal from "react-modal";
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 
 
 export default function SessionUserPage() {
+
 const sessionUser = useSelector((state) => state.session?.user);
 const id = sessionUser?.id
 const dispatch = useDispatch();
@@ -21,10 +22,19 @@ const photos = useSelector(store => Object.values(store?.photo))
 const [ picture, setPicture ] = useState(0)
 const length = photos.length;
 const [ modalIsOpen, setModalIsOpen ] = useState(false)
+let [ key, setKey ] = useState('')
 
 
-
-
+useEffect(() => {
+    if (!key) {
+        (async () => {
+            const response = await fetch('api/photos/key');
+            const keyResponse = await response.json();
+            setKey(keyResponse);
+        })();
+    }
+});
+console.log(key)
 
 useEffect(() => {
     dispatch(getSessionPhotosThunk(id))
@@ -56,10 +66,10 @@ useEffect(() => {
     }
 },[locationArray, locationPopulated]);
 
-const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
-  })
+// const { isLoaded } = useJsApiLoader({
+//     id: 'google-map-script',
+//     googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
+//   })
   
   const containerStyle = {
     width: '400px',
@@ -119,7 +129,7 @@ return (
                 <CommentsModal photo={photos[picture]} />
                 <div className="map_page__container-session">
                 <div id="map-page-container-inner" style={{ height: '400px', width: '250px' }}>
-                {isLoaded && currentPosition ?<GoogleMap
+                {key && currentPosition ?<LoadScript googleMapsApiKey={key.api} > <GoogleMap
                     mapContainerStyle={containerStyle}
                     clickableIcons={true}
                     zoom={12}
@@ -130,12 +140,8 @@ return (
                 <Marker 
                     position={currentPosition}
                     title="Camera Icon"
-                    icon={{
-                        url: CameraIcon,
-                        scaledSize: new window.google.maps.Size(25, 25)
-                    }}
                     streetView={false} />
-                </GoogleMap>:null}
+                </GoogleMap> </LoadScript>:null}
                 </div>
                 </div>
                 {sessionUser &&         
