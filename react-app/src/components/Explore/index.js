@@ -26,8 +26,6 @@ useEffect(() => {
     }
 });
 
-
-
 let locationArray = [];
 
 const locationMap = () => {

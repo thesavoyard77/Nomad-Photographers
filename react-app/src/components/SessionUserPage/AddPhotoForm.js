@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
 import CameraIcon from './public/cameraIcon.png'
 import mapStyle from "./public/mapStyle";
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import './PhotoForm.css'
 
 export default function AddPhotoForm() {
@@ -18,13 +18,23 @@ export default function AddPhotoForm() {
     const [placeName, setPlaceName] = useState()
     const [ photoLoading, setPhotoLoading ] = useState(false)
     const [currentPosition, setCurrentPosition] = useState({lat:40.748391732096245,lng:-73.98570731534348})
+    let [ key, setKey ] = useState('')
 
+    useEffect(() => {
+        if (!key) {
+            (async () => {
+                const response = await fetch('api/photos/key');
+                const keyResponse = await response.json();
+                setKey(keyResponse);
+            })();
+        }
+    });
 
-    const { isLoaded, loadError } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
+    // const { isLoaded, loadError } = useJsApiLoader({
+    //     id: 'google-map-script',
+    //     googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
 
-      })
+    //   })
       
 
       const containerStyle = {
@@ -107,7 +117,7 @@ export default function AddPhotoForm() {
     },[]);
 
 
-    if (loadError) return "Error loading maps"
+ 
     return  (
         <div className="add-photo-wrapper">
             <form className="add-photo-form" onSubmit={handleSubmit}>
@@ -140,7 +150,7 @@ export default function AddPhotoForm() {
                 ></textarea>
                 <div className="map_page__container-add">
                     <div id="map-page-container-inner-add" style={{ height: '600px', width: '400px' }}>
-                        {isLoaded ?<GoogleMap
+                        {key ? <LoadScript googleMapsApiKey={key.api} ><GoogleMap
                             mapContainerStyle={containerStyle}
                             clickableIcons={false}
                             zoom={12}
@@ -151,15 +161,9 @@ export default function AddPhotoForm() {
                             >
                             <Marker
                             key={marker.id}
-                            icon={{
-                                url: CameraIcon,
-                                scaledSize: new window.google.maps.Size(30, 30),
-                                origin: new window.google.maps.Point(0, 0),
-                                anchor: new window.google.maps.Point(15, 15)
-                            }}
                             position={{ lat:marker.lat,lng:marker.lng }}
                             ></Marker>
-                        </GoogleMap>:null}
+                        </GoogleMap></LoadScript>:null}
                     </div>
                 </div>
                 <button className="add-submit" type="submit" value="submit">Submit</button>

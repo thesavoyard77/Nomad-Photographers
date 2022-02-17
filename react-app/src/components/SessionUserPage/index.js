@@ -34,7 +34,7 @@ useEffect(() => {
         })();
     }
 });
-console.log(key)
+
 
 useEffect(() => {
     dispatch(getSessionPhotosThunk(id))
