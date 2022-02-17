@@ -29,12 +29,6 @@ export default function AddPhotoForm() {
             })();
         }
     });
-
-    // const { isLoaded, loadError } = useJsApiLoader({
-    //     id: 'google-map-script',
-    //     googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
-
-    //   })
       
 
       const containerStyle = {
@@ -150,7 +144,7 @@ export default function AddPhotoForm() {
                 ></textarea>
                 <div className="map_page__container-add">
                     <div id="map-page-container-inner-add" style={{ height: '600px', width: '400px' }}>
-                        {key ? <LoadScript googleMapsApiKey={key.api} ><GoogleMap
+                        {key ? <GoogleMap
                             mapContainerStyle={containerStyle}
                             clickableIcons={false}
                             zoom={12}
@@ -163,7 +157,7 @@ export default function AddPhotoForm() {
                             key={marker.id}
                             position={{ lat:marker.lat,lng:marker.lng }}
                             ></Marker>
-                        </GoogleMap></LoadScript>:null}
+                        </GoogleMap>:null}
                     </div>
                 </div>
                 <button className="add-submit" type="submit" value="submit">Submit</button>

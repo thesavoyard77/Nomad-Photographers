@@ -120,7 +120,7 @@ export default function EditPhotoForm({photo}) {
                 ></textarea>
                  <div className="map_page__container-edit">
                     <div id="map-page-container-inner-edit" style={{ height: '600px', width: '400px' }}>
-                        {key ? <LoadScript googleMapsApiKey={key.api} ><GoogleMap
+                        {key ? <GoogleMap
                             mapContainerStyle={containerStyle}
                             clickableIcons={false}
                             zoom={12}
@@ -139,7 +139,7 @@ export default function EditPhotoForm({photo}) {
                             }}
                             position={{ lat:marker.lat,lng:marker.lng }}
                             ></Marker>
-                        </GoogleMap></LoadScript>:null}
+                        </GoogleMap>:null}
                     </div>
                 </div>
                 <button className="edit-submit" type="submit" value="submit">Submit</button>
