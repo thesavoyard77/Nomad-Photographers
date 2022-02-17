@@ -1,11 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { editPhotoThunk, deletePhotosThunk } from '../../store/photo';
 import { useDispatch } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
 import CameraIcon from './public/cameraIcon.png'
 import mapStyle from "./public/mapStyle";
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import './PhotoForm.css'
 
 export default function EditPhotoForm({photo}) {
@@ -14,16 +14,26 @@ export default function EditPhotoForm({photo}) {
     const user_id = sessionUser.id
     const dispatch = useDispatch()
     const {id} = photo;
+    let [ key, setKey ] = useState('')
     const [ description, setDescription ] = useState(photo.description)
     const [placeName, setPlaceName] = useState(photo.place_name)
     const starterLoc = JSON.parse(photo?.geo_location)
     const [currentPosition, setCurrentPosition] = useState(starterLoc)
 
+    useEffect(() => {
+        if (!key) {
+            (async () => {
+                const response = await fetch('api/photos/key');
+                const keyResponse = await response.json();
+                setKey(keyResponse);
+            })();
+        }
+    });
 
-    const { isLoaded, loadError } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
-      });
+    // const { isLoaded, loadError } = useJsApiLoader({
+    //     id: 'google-map-script',
+    //     googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
+    //   });
       
       
       const containerStyle = {
@@ -110,7 +120,7 @@ export default function EditPhotoForm({photo}) {
                 ></textarea>
                  <div className="map_page__container-edit">
                     <div id="map-page-container-inner-edit" style={{ height: '600px', width: '400px' }}>
-                        {isLoaded ?<GoogleMap
+                        {key ? <LoadScript googleMapsApiKey={key.api} ><GoogleMap
                             mapContainerStyle={containerStyle}
                             clickableIcons={false}
                             zoom={12}
@@ -129,7 +139,7 @@ export default function EditPhotoForm({photo}) {
                             }}
                             position={{ lat:marker.lat,lng:marker.lng }}
                             ></Marker>
-                        </GoogleMap>:null}
+                        </GoogleMap></LoadScript>:null}
                     </div>
                 </div>
                 <button className="edit-submit" type="submit" value="submit">Submit</button>
