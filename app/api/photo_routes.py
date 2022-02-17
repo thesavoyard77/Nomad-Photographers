@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+import os
 from flask_login import login_required, current_user
 from app.models import Photo, db
 from app.forms.photo_form import AddPhotoForm
@@ -18,7 +19,11 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+@photo_routes.route('/key')
+def key():
+        REACT_APP_MAPS_KEY=os.environ.get("REACT_APP_MAPS_KEY")
 
+        return {"api":f"{REACT_APP_MAPS_KEY}"}
 
 @photo_routes.route('')
 def photos():
@@ -31,26 +36,10 @@ def user_photos(id):
     user_id = current_user.id
     photos = Photo.query.filter(Photo.user_id == user_id).all()
     return {photo.id:photo.to_dict() for photo in photos}
-#     if (current_user.is_authenticated):
 
 
-# @photo_routes.route('', methods=["POST"])
-# @login_required
-# def photo_post():
-#     form = AddPhotoForm()
-#     form["csrf_token"].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         pic = Photo(
-#             url=form.data['url'],
-#             description=form.data['description'],
-#             user_id=form.data['user_id'],
-#             geo_location=form.data['geo_location'],
-#             place_name=form.data['place_name']
-#         )
-#         db.session.add(pic)
-#         db.session.commit()
-#         return pic.to_dict()
-#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
 
 @photo_routes.route("", methods=["POST"])
 @login_required

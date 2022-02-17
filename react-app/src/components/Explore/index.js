@@ -1,24 +1,30 @@
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import CameraIcon from '../SessionUserPage/public/cameraIcon.png'
 import mapStyle from "../SessionUserPage/public/mapStyle";
 import './Carousels.css'
 import { getPhotosThunk } from "../../store/photo";
 import { getUsersThunk } from "../../store/user";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi'
 import CommentsModal from "../Comments/ExploreCommentsModal";
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 
 export default function SessionUserPage() {
-// const sessionUser = useSelector((state) => state.session?.user);
+
 const dispatch = useDispatch();
 const photos = useSelector(store => Object.values(store?.photo))
-
+let [ key, setKey ] = useState('')
 const [ picture, setPicture ] = useState(0)
 const length = photos.length;
-// let id;
 
-
+useEffect(() => {
+    if (!key) {
+        (async () => {
+            const response = await fetch('api/photos/key');
+            const keyResponse = await response.json();
+            setKey(keyResponse);
+        })();
+    }
+});
 
 
 
@@ -52,11 +58,15 @@ useEffect(() => {
     }
 },[locationArray, locationPopulated]);
 
-
-const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
-  })
+// const { isLoaded } = useJsApiLoader(() => {
+//     console.log(key)
+//     if (key) {
+//     debugger
+//     return {
+//     id: 'google-map-script',
+//     googleMapsApiKey: key.api
+//     }}
+//   })
   
   const containerStyle = {
     width: '400px',
@@ -85,7 +95,7 @@ if(!photos.length) {
 }
 
 
-
+if (!key) return null;
 return (
 <section id="grandfather">
     <div className="carousel">
@@ -103,7 +113,8 @@ return (
                 </div>
                 <div className="map_page__container">
                 <div id="map-page-container-inner" style={{ height: '300px', width: '300px' }}>
-                {isLoaded && currentPosition ?<GoogleMap
+                {key && currentPosition ? <LoadScript googleMapsApiKey={key.api} >
+                    <GoogleMap
                     mapContainerStyle={containerStyle}
                     zoom={12}
                     center={currentPosition}
@@ -113,13 +124,9 @@ return (
                     <Marker 
                         position={currentPosition}
                         title="Camera Marker"
-                        icon={{
-                            url: CameraIcon,
-                            scaledSize: new window.google.maps.Size(25, 25)
-                        }}
                         streetView={false} 
                     />
-                </GoogleMap>:null}
+                </GoogleMap> </LoadScript>:null}
                 </div>
                 </div>
                 <CommentsModal photo={photos[picture]} />
