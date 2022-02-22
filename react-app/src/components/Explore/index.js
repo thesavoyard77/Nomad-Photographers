@@ -56,16 +56,6 @@ useEffect(() => {
     }
 },[locationArray, locationPopulated]);
 
-// const { isLoaded } = useJsApiLoader(() => {
-//     console.log(key)
-//     if (key) {
-//     debugger
-//     return {
-//     id: 'google-map-script',
-//     googleMapsApiKey: key.api
-//     }}
-//   })
-  
   const containerStyle = {
     width: '400px',
     height: '250px'
