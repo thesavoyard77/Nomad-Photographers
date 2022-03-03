@@ -5,7 +5,6 @@ import CommentsModal from "../Comments/SessionCommentModal";
 import '../Explore/Carousels.css'
 import { getSessionPhotosThunk } from "../../store/photo";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi';
-import CameraIcon from './public/cameraIcon.png'
 import mapStyle from "./public/mapStyle";
 import AddPhotoForm from "../SessionUserPage/AddPhotoForm";
 import Modal from "react-modal";
@@ -66,10 +65,6 @@ useEffect(() => {
     }
 },[locationArray, locationPopulated]);
 
-// const { isLoaded } = useJsApiLoader({
-//     id: 'google-map-script',
-//     googleMapsApiKey: process.env.REACT_APP_MAPS_KEY
-//   })
   
   const containerStyle = {
     width: '400px',

@@ -1,22 +1,37 @@
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import mapStyle from "../SessionUserPage/public/mapStyle";
-import './Carousels.css'
+import "bootstrap/dist/css/bootstrap.css";
+import { Carousel } from 'react-bootstrap';
 import { getPhotosThunk } from "../../store/photo";
 import { getUsersThunk } from "../../store/user";
-import {BiLeftArrow, BiRightArrow} from 'react-icons/bi'
-import CommentsModal from "../Comments/ExploreCommentsModal";
-import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
-import "bootstrap/dist/css/bootstrap.css";
-import {Carousel} from 'react-bootstrap';
-
 
 export default function Test() {
+    const photos = useSelector(store => Object.values(store?.photo));
+    const dispatch = useDispatch();
+    const length = photos.length;
 
+    useEffect(() => {
+        dispatch(getPhotosThunk())
+        dispatch(getUsersThunk())
+        return
+    }, [dispatch])
+    
     return (
         <div className="test">
             <Carousel>
-  <Carousel.Item>
+                {photos?.map(photo => {
+                <Carousel.Item>
+                <img className="images"
+                src={photo?.url}
+                alt="travel photos"
+                    />
+                    <Carousel.Caption>
+                <h3>First slide label</h3>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+                })}
+  {/* <Carousel.Item>
     <img
       className="d-block w-100"
       src="holder.js/800x400?text=First slide&bg=373940"
@@ -50,7 +65,7 @@ export default function Test() {
       <h3>Third slide label</h3>
       <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
     </Carousel.Caption>
-  </Carousel.Item>
+  </Carousel.Item> */}
 </Carousel>
         </div>
 

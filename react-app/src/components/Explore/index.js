@@ -29,10 +29,9 @@ useEffect(() => {
 let locationArray = [];
 
 const locationMap = () => {
-    photos?.map(photo => {
+    photos?.forEach(photo => {
         let geo_location = JSON.parse(photo?.geo_location)
         locationArray.push(geo_location)
-        return
     })
 }
 locationMap()
@@ -56,15 +55,6 @@ useEffect(() => {
     }
 },[locationArray, locationPopulated]);
 
-// const { isLoaded } = useJsApiLoader(() => {
-//     console.log(key)
-//     if (key) {
-//     debugger
-//     return {
-//     id: 'google-map-script',
-//     googleMapsApiKey: key.api
-//     }}
-//   })
   
   const containerStyle = {
     width: '400px',

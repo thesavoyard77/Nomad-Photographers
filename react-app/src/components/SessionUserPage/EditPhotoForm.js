@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
 import CameraIcon from './public/cameraIcon.png'
 import mapStyle from "./public/mapStyle";
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, Marker } from '@react-google-maps/api';
 import './PhotoForm.css'
 
 export default function EditPhotoForm({photo}) {
