@@ -1,6 +1,7 @@
-import './About.css'
+// import './About.css'
 import React from 'react'
 import { BsGithub, BsLinkedin } from 'react-icons/bs'
+
 
 export default function AboutPage() {
 

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import Navbar from './components/Navbar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Test from './components/Test';
 import User from './components/User';
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <Navbar />
       <Switch>
         <ProtectedRoute path='/photos'>
           <SessionUserPage />

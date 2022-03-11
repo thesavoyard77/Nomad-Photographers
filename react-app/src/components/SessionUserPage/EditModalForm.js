@@ -1,7 +1,7 @@
 import Modal from "react-modal";
 import { useState } from "react";
 import EditPhotoForm from "./EditPhotoForm";
-import '../Explore/Carousels.css'
+// import '../Explore/Carousels.css'
 
 export default function ModalCapture({ photo }) {
     const [ modalIsOpen, setModalIsOpen ] = useState(false)

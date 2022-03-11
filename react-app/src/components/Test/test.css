@@ -1,0 +1,61 @@
+
+/* ======================================== Carousel CSS Start ================================================================== */
+.d-block {
+  display: block;
+  height: 80vh !important;
+  width: 100vw;
+  width: auto;
+  overflow: hidden;
+  object-fit: scale-down;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.carousel-control-prev-icon {
+  outline: black;
+  /* filter: invert(100%); */
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+ }
+ 
+ .carousel-control-next-icon {
+  outline: black;
+  /* filter: invert(100%); */
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+ }
+
+ .over-photo {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+ }
+
+ .carousel-background {
+  background-color: #535557;
+ }
+/* ======================================== Carousel CSS End ================================================================== */
+
+/* ======================================== Navbar CSS Start ================================================================== */
+.color-nav {
+  background-color: rgb(24, 22, 22);
+
+}
+
+.nav-text-colors {
+  color: rgb(187, 160, 132);
+  font-family: 'Rouge Script', cursive;
+}
+
+.hamburger {
+  color: rgb(187, 160, 132);
+}
+
+ /* ======================================== Nsvbar CSS End ========================================================================= */
+ /* ======================================== Comment Box CSS begin ================================================================== */
+.comment-box {
+  background-color: rgb(24, 22, 22);
+  color: rgb(255, 255, 255);
+}
+
+li {
+  list-style-type: none;
+}
+ /* ======================================== Comment Box CSS End ==================================================================== */
+

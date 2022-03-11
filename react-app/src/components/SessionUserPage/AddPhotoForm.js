@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
 import mapStyle from "./public/mapStyle";
 import { GoogleMap, Marker } from '@react-google-maps/api';
-import './PhotoForm.css'
+// import './PhotoForm.css'
 
 export default function AddPhotoForm() {
     const [errors, setErrors] = useState([]);

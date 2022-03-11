@@ -1,29 +1,48 @@
-import React, {useState} from 'react';
+import { useEffect, useState, useCallback } from "react";
+import { useDispatch, useSelector } from 'react-redux'
 import { Carousel } from 'react-bootstrap';
-import {photos} from './Photos'
-export const CurrentIndex = React.createContext();
+import { getPhotosThunk } from "../../store/photo";
+import { getUsersThunk } from "../../store/user";
 
-const ReactSlider = ({ index, setIndex }) => {
+import './test.css'
 
+
+const HeroSlider = ({ index, setIndex }) => {
+    
+    const dispatch = useDispatch();
+    const photos = useSelector(store => Object.values(store?.photo))
+    
+
+    useEffect(() => {
+        dispatch(getPhotosThunk())
+        dispatch(getUsersThunk())
+        return
+    }, [dispatch])
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
       };
+
+
+
+    if(!photos.length) {
+        return null;
+    }
     
     return (
         <>
             <Carousel activeIndex={index} onSelect={handleSelect} >
                 
-                {photos.map(photo => {
+                {photos?.map(photo => {
                     return (
-                    <Carousel.Item interval={5000} key={photo.id} className="carousel-background">
+                    <Carousel.Item interval={null} key={photo.id} className="carousel-background">
                     <img
                     className="d-block w-100"
-                    src={photo?.image}
+                    src={photo?.url}
                     alt="slide"
                     />
                     <Carousel.Caption>
-                    <h3 className="over-photo">{photo?.placeName}</h3>
+                    <h3 className="over-photo">{photo?.place_name}</h3>
                     <p className="over-photo">{photo?.description}</p>
                     </Carousel.Caption>
                 </Carousel.Item>)
@@ -33,4 +52,4 @@ const ReactSlider = ({ index, setIndex }) => {
     )
 }
 
-export default ReactSlider;
+export default HeroSlider;

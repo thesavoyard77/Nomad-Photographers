@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import mapStyle from "../SessionUserPage/public/mapStyle";
-import './Carousels.css'
 import { getPhotosThunk } from "../../store/photo";
 import { getUsersThunk } from "../../store/user";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi'
@@ -15,6 +14,7 @@ const photos = useSelector(store => Object.values(store?.photo))
 let [ key, setKey ] = useState('')
 const [ picture, setPicture ] = useState(0)
 const length = photos.length;
+
 
 useEffect(() => {
     if (!key) {
