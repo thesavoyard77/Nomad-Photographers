@@ -54,7 +54,7 @@
     "prompts": "2.4.0",
     "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
-    "react-bootstrap": "^2.1.2",
+    "react-bootstrap": "^2.2.0",
     "react-bootstrap-carousel": "^2.0.2",
     "react-carousel-minimal": "^1.4.1",
     "react-dev-utils": "^11.0.3",
