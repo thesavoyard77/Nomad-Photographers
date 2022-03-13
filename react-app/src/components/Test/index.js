@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from 'react-redux'
 import ReactSlider from './ReactSlider';
+import GoogleMapTest from './GoogleMapTest'
 
 import './test.css'
 
@@ -20,7 +21,9 @@ const RenderPage = () => {
                     Photographed by {photos[index]?.users?.username?.split("")[0].toUpperCase() + photos[index]?.users?.username?.slice(1)}
                 </h3>
             </div>
-            <div className="location-map"></div>
+            <div className="location-map">
+            <GoogleMapTest index={index} setIndex={setIndex} />
+            </div>
         </div>
     )
 }
