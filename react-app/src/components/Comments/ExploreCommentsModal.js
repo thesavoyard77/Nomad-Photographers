@@ -9,7 +9,7 @@ export default function CommentsModal({ photo }) {
     const sessionUser = useSelector((state) => state.session?.user);
     const commentsArr = photo?.comments
     const photo_id = photo?.id
- console.log(photo)
+
 
 return (
     <>

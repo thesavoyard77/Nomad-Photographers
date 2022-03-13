@@ -1,9 +1,5 @@
-import { useEffect, useState, useCallback } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { getPhotosThunk } from "../../store/photo";
-import { getUsersThunk } from "../../store/user";
-import CommentsModal from "../Comments/ExploreCommentsModal";
-import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
+import { useState } from "react";
+import { useSelector } from 'react-redux'
 import ReactSlider from './ReactSlider';
 
 import './test.css'
@@ -12,22 +8,21 @@ const RenderPage = () => {
 
     const photos = useSelector(store => Object.values(store?.photo))
     const [index, setIndex] = useState(0);
+
     return (
-        <>
-        <ReactSlider index={index} setIndex={setIndex} />
-        <div className="under-slider"> 
-        <div className="comment-box">
-            <ul>
-                {photos[index]?.comments.map(comment => {
-                    return (
-                        <li key={comment.id}>{comment.body}</li>
-                    )
-                })}
-            </ul>
+        <div className="container">
+            <div className="slider">
+                <ReactSlider index={index} setIndex={setIndex} />
+            </div>
+
+            <div class="comments"></div>
+            <div class="add-comments">
+                <h3 className="photographer-name">
+                    Photographed by {photos[index]?.photographer_name}
+                </h3>
+            </div>
+            <div class="location-map"></div>
         </div>
-        
-        </div>
-        </>
     )
 }
 

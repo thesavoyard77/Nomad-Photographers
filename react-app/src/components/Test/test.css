@@ -1,4 +1,20 @@
+/* =========================================Page Layout Start ===================================================================== */
+.container {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "slider slider slider"
+    "slider slider slider"
+    "comments add-comments location-map"; 
+}
+.slider { grid-area: slider; }
+.comments { grid-area: comments; }
+.add-comments { grid-area: add-comments; }
+.location-map { grid-area: location-map; }
 
+/* =========================================Page Layout End ===================================================================== */
 /* ======================================== Carousel CSS Start ================================================================== */
 .d-block {
   display: block;
@@ -58,4 +74,16 @@ li {
   list-style-type: none;
 }
  /* ======================================== Comment Box CSS End ==================================================================== */
+ /* ======================================== Add Comment Box CSS Begin ============================================================== */
+ .add-comments { 
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+ .photographer-name {
+  color: rgb(187, 160, 132);
+  font-family: 'Rouge Script', cursive;
+ }
+ /* ======================================== Add Comment Box CSS End ================================================================ */
 

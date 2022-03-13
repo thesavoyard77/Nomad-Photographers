@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { Carousel } from 'react-bootstrap';
 import { getPhotosThunk } from "../../store/photo";
