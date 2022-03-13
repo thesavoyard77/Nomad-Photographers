@@ -8,20 +8,19 @@ const RenderPage = () => {
 
     const photos = useSelector(store => Object.values(store?.photo))
     const [index, setIndex] = useState(0);
-
     return (
         <div className="container">
             <div className="slider">
                 <ReactSlider index={index} setIndex={setIndex} />
             </div>
 
-            <div class="comments"></div>
-            <div class="add-comments">
+            <div className="comments"></div>
+            <div className="add-comments">
                 <h3 className="photographer-name">
-                    Photographed by {photos[index]?.photographer_name}
+                    Photographed by {photos[index]?.users?.username?.split("")[0].toUpperCase() + photos[index]?.users?.username?.slice(1)}
                 </h3>
             </div>
-            <div class="location-map"></div>
+            <div className="location-map"></div>
         </div>
     )
 }
