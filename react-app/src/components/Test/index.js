@@ -16,7 +16,7 @@ const RenderPage = () => {
             </div>
 
             <div className="comments"></div>
-            <div className="add-comments">
+            <div className="photogrpher-info">
                 <h3 className="photographer-name">
                     Photographed by {photos[index]?.users?.username?.split("")[0].toUpperCase() + photos[index]?.users?.username?.slice(1)}
                 </h3>

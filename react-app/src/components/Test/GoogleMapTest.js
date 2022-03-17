@@ -21,7 +21,13 @@ const GoogleMapTest = ({ index, setIndex }) => {
     });
     
     let locationArray = [];
+
     
+
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+      };
+
     const locationMap = () => {
         photos?.forEach(photo => {
             let geo_location = JSON.parse(photo?.geo_location)
@@ -32,6 +38,11 @@ const GoogleMapTest = ({ index, setIndex }) => {
     
     const [currentPosition, setCurrentPosition] = useState(locationArray[0])
     const [ locationPopulated, setLocationPopulated ] = useState(false)
+
+
+    useEffect(() => {
+        setCurrentPosition(locationArray[index])
+    },[index])
 
     useEffect(() => {
         dispatch(getPhotosThunk())
@@ -65,10 +76,13 @@ useEffect(() => {
         return null;
     }
 
+
+
     return (
         <>
                 {key && currentPosition ? <LoadScript googleMapsApiKey={key.api} >
             <GoogleMap
+            onSelect={handleSelect}
             mapContainerStyle={containerStyle}
             zoom={12}
             center={currentPosition}

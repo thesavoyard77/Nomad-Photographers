@@ -35,7 +35,7 @@ const HeroSlider = ({ index, setIndex }) => {
                 
                 {photos?.map(photo => {
                     return (
-                    <Carousel.Item interval={null} key={photo.id} className="carousel-background">
+                    <Carousel.Item interval={5000} key={photo.id} className="carousel-background">
                     <img
                     className="d-block w-100"
                     src={photo?.url}
