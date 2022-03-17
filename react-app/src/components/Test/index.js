@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useSelector } from 'react-redux'
-import ReactSlider from './ReactSlider';
+import ReactSlider from './TestCarousel';
 import GoogleMapTest from './GoogleMapTest'
-import Comments from './Comments/Comments'
+import Comments from './TestComments/TestComments'
 
 import './test.css'
 

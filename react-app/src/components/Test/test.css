@@ -65,13 +65,39 @@
 
  /* ======================================== Nsvbar CSS End ========================================================================= */
  /* ======================================== Comment Box CSS begin ================================================================== */
-.comments {
+ .comments{
+   overflow: hidden;
+ }
+.even-comment-div {
   color: white;
+  text-align: left;
+  background-color: rgb(24, 22, 22);
+  border: 1px solid white;
+  background-color: rgb(44, 41, 41);
+  border-radius: 3px;
+  margin: 2px;
+  padding-left: 15px;
+  padding-top: 5px;
 }
 
-.no-comments {
-  color: white;
+.even-comment-div > p {
+  font-size: 12px;
 }
+
+.odd-comment-div {
+  color: rgb(187, 160, 132);
+  text-align: right;
+  border: 1px solid rgb(187, 160, 132);
+  border-radius: 3px;
+  margin: 2px;
+  padding-right: 15px;
+  padding-top: 5px;
+}
+
+.odd-comment-div > p {
+  font-size: 12px;
+}
+
 
  /* ======================================== Comment Box CSS End ==================================================================== */
  /* ======================================== Photographer Box CSS Begin ============================================================== */
