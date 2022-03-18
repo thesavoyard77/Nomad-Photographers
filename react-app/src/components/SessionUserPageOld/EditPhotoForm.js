@@ -4,7 +4,7 @@ import { editPhotoThunk, deletePhotosThunk } from '../../store/photo';
 import { useDispatch } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
 import CameraIcon from './public/cameraIcon.png'
-import mapStyle from "./public/mapStyle";
+import mapStyle from "../public/mapStyle";
 import { GoogleMap, Marker } from '@react-google-maps/api';
 // import './PhotoForm.css'
 

@@ -12,7 +12,6 @@ const RenderPage = () => {
     const photos = useSelector(store => Object.values(store?.photo))
     const [index, setIndex] = useState(0);
 
-    console.log(photos[index]?.users)
     return (
         <div className="container">
             <div className="slider">
@@ -27,6 +26,13 @@ const RenderPage = () => {
                 <h3 className="photographer-name">
                     Photographed by {photos[index]?.users?.username?.split("")[0].toUpperCase() + photos[index]?.users?.username?.slice(1)}
                 </h3>
+                
+                <p className="photographer-bio">
+                    <hr className="photo-bio-hr"></hr>
+                    {photos[index]?.users?.bio}
+                    <hr className="photo-bio-hr"></hr>
+                </p>
+                
             </div>
             <div className="location-map">
             <GoogleMapTest index={index} setIndex={setIndex} />

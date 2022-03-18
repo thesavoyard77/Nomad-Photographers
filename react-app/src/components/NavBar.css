@@ -11,3 +11,7 @@
   .hamburger {
     color: rgb(187, 160, 132);
   }
+
+  #offcanvasNavbar {
+    background-color: #f8f0e3;
+  }

@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import mapStyle from "../SessionUserPage/public/mapStyle";
+import mapStyle from "../public/mapStyle";
 import { getPhotosThunk } from "../../store/photo";
 import { getUsersThunk } from "../../store/user";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi'

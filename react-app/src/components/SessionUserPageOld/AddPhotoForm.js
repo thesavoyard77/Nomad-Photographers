@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
-import mapStyle from "./public/mapStyle";
+import mapStyle from "../public/mapStyle";
 import { GoogleMap, Marker } from '@react-google-maps/api';
 // import './PhotoForm.css'
 
