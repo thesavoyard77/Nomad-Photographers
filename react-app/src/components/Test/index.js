@@ -12,7 +12,7 @@ const RenderPage = () => {
     const photos = useSelector(store => Object.values(store?.photo))
     const [index, setIndex] = useState(0);
 
-
+    console.log(photos[index]?.users)
     return (
         <div className="container">
             <div className="slider">
