@@ -31,11 +31,11 @@ const HeroSlider = ({ index, setIndex }) => {
     
     return (
         <>
-            <Carousel activeIndex={index} onSelect={handleSelect} >
+            <Carousel activeIndex={index} onSelect={handleSelect} autoPlay={false}>
                 
                 {photos?.map(photo => {
                     return (
-                    <Carousel.Item interval={5000} key={photo.id} className="carousel-background">
+                    <Carousel.Item autoPlay={false}  key={photo.id} className="carousel-background">
                     <img
                     className="d-block w-100"
                     src={photo?.url}

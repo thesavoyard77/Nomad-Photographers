@@ -18,7 +18,7 @@
 /* ======================================== Carousel CSS Start ================================================================== */
 .d-block {
   display: block;
-  height: 80vh !important;
+  max-height: 80vh !important;
   width: 100vw;
   width: auto;
   overflow: hidden;
@@ -71,7 +71,6 @@
 .even-comment-div {
   color: white;
   text-align: left;
-  background-color: rgb(24, 22, 22);
   border: 1px solid white;
   background-color: rgb(44, 41, 41);
   border-radius: 3px;
@@ -98,6 +97,33 @@
   font-size: 12px;
 }
 
+.test-add-comment-form > label {
+  color: rgb(187, 160, 132);
+  font-family: 'Rouge Script', cursive;
+}
+
+.add-comment-box {
+  width: 90%;
+  color: white;
+  text-align: left;
+  background-color: rgb(24, 22, 22);
+  margin-left: 5px;
+}
+
+.test-add-comments-section {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.add-comment-text {
+  margin-left: 5px;
+}
+
+.add-comment-submit { 
+  position: absolute;
+  left: 78%;
+  top: 55%;
+}
 
  /* ======================================== Comment Box CSS End ==================================================================== */
  /* ======================================== Photographer Box CSS Begin ============================================================== */

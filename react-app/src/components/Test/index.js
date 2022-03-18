@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import ReactSlider from './TestCarousel';
 import GoogleMapTest from './GoogleMapTest'
 import Comments from './TestComments/TestComments'
+import TestAddComments from './TestComments/TestAddComment'
 
 import './test.css'
 
@@ -19,6 +20,7 @@ const RenderPage = () => {
             </div>
 
             <div className="comments">
+                <TestAddComments photo={photos[index]}/>
                 <Comments photo={photos[index]}/>
             </div>
             <div className="photogrpher-info">
