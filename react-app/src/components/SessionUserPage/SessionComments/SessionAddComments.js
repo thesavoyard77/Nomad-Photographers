@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCommentThunk } from '../../../store/comment'
-import { getPhotosThunk } from '../../../store/photo'
+import { getSessionPhotosThunk } from '../../../store/photo'
 import Button from 'react-bootstrap/Button';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,7 +19,7 @@ export default function TestAddComments(photo) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(addCommentThunk(body, photo_id, user_id))
-        await dispatch(getPhotosThunk(user_id))
+        await dispatch(getSessionPhotosThunk(user_id))
         setBody('')
         if (data) {
             setErrors(data);

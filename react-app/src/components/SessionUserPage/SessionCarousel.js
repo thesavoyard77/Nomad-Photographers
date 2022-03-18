@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { Carousel } from 'react-bootstrap';
-import { getPhotosThunk } from "../../store/photo";
+import { getSessionPhotosThunk } from "../../store/photo";
 import { getUsersThunk } from "../../store/user";
 
 import './session.css'
@@ -11,10 +11,11 @@ const HeroSlider = ({ index, setIndex }) => {
     
     const dispatch = useDispatch();
     const photos = useSelector(store => Object.values(store?.photo))
-    
+    const sessionUser = useSelector((state) => state.session?.user);
+    const id = sessionUser?.id
 
     useEffect(() => {
-        dispatch(getPhotosThunk())
+        dispatch(getSessionPhotosThunk(id))
         dispatch(getUsersThunk())
         return
     }, [dispatch])

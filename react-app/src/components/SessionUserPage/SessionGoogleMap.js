@@ -1,13 +1,15 @@
 import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
-import { getPhotosThunk } from "../../store/photo";
+import { getSessionPhotosThunk } from "../../store/photo";
 import mapStyle from "../public/mapStyle";
 
 const GoogleMapTest = ({ index, setIndex }) => {
 
     const dispatch = useDispatch();
     const photos = useSelector(store => Object.values(store?.photo))
+    const sessionUser = useSelector((state) => state.session?.user);
+    const id = sessionUser?.id
     let [ key, setKey ] = useState('')
     
     useEffect(() => {
@@ -45,7 +47,7 @@ const GoogleMapTest = ({ index, setIndex }) => {
     },[index])
 
     useEffect(() => {
-        dispatch(getPhotosThunk())
+        dispatch(getSessionPhotosThunk(id))
         return
     }, [dispatch])
 

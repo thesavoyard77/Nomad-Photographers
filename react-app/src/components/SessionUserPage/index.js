@@ -4,7 +4,7 @@ import ReactSlider from './SessionCarousel';
 import GoogleMapTest from './SessionGoogleMap'
 import Comments from './SessionComments/SessionComments'
 import TestAddComments from './SessionComments/SessionAddComments'
-
+import Modal from "react-modal";
 import './session.css'
 
 const RenderPage = () => {
