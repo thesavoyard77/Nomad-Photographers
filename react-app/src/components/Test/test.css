@@ -2,16 +2,17 @@
 .container {
   display: grid; 
   grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr; 
   gap: 0px 0px; 
   grid-template-areas: 
     "slider slider slider"
     "slider slider slider"
-    "comments photogrpher-info location-map"; 
+    "comments photographer-info location-map"
+    "comments photographer-info location-map"; 
 }
 .slider { grid-area: slider; }
 .comments { grid-area: comments; }
-.add-comments { grid-area: photogrpher-info; }
+.photographer-info { grid-area: photographer-info; }
 .location-map { grid-area: location-map; }
 
 @media only screen and (max-width: 1200px) {

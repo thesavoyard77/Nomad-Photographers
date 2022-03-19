@@ -32,7 +32,7 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Switch>
-        <ProtectedRoute path='/photos'>
+        <ProtectedRoute path='/myphotos'>
           <SessionUserPage />
           </ProtectedRoute>
         <Route path='/login' exact={true}>

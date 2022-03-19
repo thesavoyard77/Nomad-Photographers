@@ -22,6 +22,7 @@ const NavComponant = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/myphotos">My Photos</Nav.Link>
               <Nav.Link href="/test">Test Page</Nav.Link>
               <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
