@@ -85,10 +85,16 @@
   color: rgb(187, 160, 132);
 }
 
- /* ======================================== Nsvbar CSS End ========================================================================= */
+ /* ======================================== Navbar CSS End ========================================================================= */
  /* ======================================== Comment Box CSS begin ================================================================== */
  .comments{
-   overflow: hidden;
+   display: block;
+   height: 39.5vh;
+ }
+
+ .comment-inner {
+  overflow-y: scroll;
+  -webkit-appearance: scrollbartrack-vertical;
  }
 .even-comment-div {
   color: white;

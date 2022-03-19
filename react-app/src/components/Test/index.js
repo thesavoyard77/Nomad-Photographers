@@ -20,8 +20,11 @@ const RenderPage = () => {
 
             <div className="comments">
                 <TestAddComments photo={photos[index]}/>
-                <Comments photo={photos[index]}/>
+                <div className="comment-inner">
+                 <Comments photo={photos[index]}/>
+                </div>
             </div>
+            
             <div className="photogrpher-info">
                 <h3 className="photographer-name">
                     Photographed by {photos[index]?.users?.username?.split("")[0].toUpperCase() + photos[index]?.users?.username?.slice(1)}
@@ -35,7 +38,7 @@ const RenderPage = () => {
                 
             </div>
             <div className="location-map">
-            <GoogleMapTest index={index} setIndex={setIndex} />
+                <GoogleMapTest index={index} setIndex={setIndex} />
             </div>
         </div>
     )
