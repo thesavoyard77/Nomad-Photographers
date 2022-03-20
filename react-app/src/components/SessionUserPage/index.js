@@ -4,12 +4,17 @@ import ReactSlider from './SessionCarousel';
 import SessionGoogleMap from './SessionGoogleMap'
 import Comments from './SessionComments/SessionComments'
 import SessionAddComments from './SessionComments/SessionAddComments'
+import { Redirect } from 'react-router-dom';
 import './session.css'
 
 const RenderPage = () => {
 
     const photos = useSelector(store => Object.values(store?.photo))
     const [index, setIndex] = useState(0);
+
+    if (!photos.length) {
+        return <Redirect to='/upload' />;
+    }
 
     return (
         <div className="container">
