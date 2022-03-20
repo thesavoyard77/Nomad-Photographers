@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-export default function Comments ({ photo }) {
+export default function SessionComments ({ photo }) {
 
     const sessionUser = useSelector((state) => state.session?.user);
     const commentsArr = photo?.comments

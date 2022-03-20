@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useSelector } from 'react-redux'
 import ReactSlider from './SessionCarousel';
-import GoogleMapTest from './SessionGoogleMap'
+import SessionGoogleMap from './SessionGoogleMap'
 import Comments from './SessionComments/SessionComments'
-import TestAddComments from './SessionComments/SessionAddComments'
-import Modal from "react-modal";
+import SessionAddComments from './SessionComments/SessionAddComments'
 import './session.css'
 
 const RenderPage = () => {
@@ -19,7 +18,7 @@ const RenderPage = () => {
             </div>
 
             <div className="comments">
-                <TestAddComments photo={photos[index]}/>
+                <SessionAddComments photo={photos[index]}/>
                 <Comments photo={photos[index]}/>
             </div>
             <div className="photogrpher-info">
@@ -35,7 +34,7 @@ const RenderPage = () => {
                 
             </div>
             <div className="location-map">
-            <GoogleMapTest index={index} setIndex={setIndex} />
+            <SessionGoogleMap index={index} setIndex={setIndex} />
             </div>
         </div>
     )

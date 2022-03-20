@@ -2,7 +2,6 @@ import { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import ModalCapture from "./EditModalForm";
 import CommentsModal from "../Comments/SessionCommentModal";
-// import '../Explore/Carousels.css'
 import { getSessionPhotosThunk } from "../../store/photo";
 import {BiLeftArrow, BiRightArrow} from 'react-icons/bi';
 import mapStyle from "../public/mapStyle";
