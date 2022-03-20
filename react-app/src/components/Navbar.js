@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Button, Offcanvas} from 'react-bootstrap';
 import { GoGlobe } from 'react-icons/go'
 import { GiHamburgerMenu } from 'react-icons/gi'
-import Modal from 'react-modal'
-import LoginForm from './auth/LoginForm'
-import SignUpForm from './auth/SignUpForm'
 import LogoutButton from './auth/LogoutButton';
 import { useSelector } from 'react-redux';
 import './NavBar.css'
@@ -31,13 +28,23 @@ const NavComponant = () => {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/myphotos">My Photos</Nav.Link>
               <Nav.Link href="/explore">Explore</Nav.Link>
-              <NavDropdown title="Dropdown" id="offcanvasNavbarDropdown">
-                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action5">
+              <NavDropdown title="Account" id="offcanvasNavbarDropdown">
+              {sessionUser && 
+                <div className="account-logged-in">
+                  <h2>Current User:</h2>
+                  <p><b>{sessionUser?.username?.split("")[0].toUpperCase() + sessionUser?.username?.slice(1)}</b></p>
+                  <p><b>{sessionUser.email}</b></p>
+                  <LogoutButton />
+                </div>}
+                {!sessionUser && 
+                <div>
+                <NavDropdown.Item href="login">Log In</NavDropdown.Item>
+                <NavDropdown.Item href="sign-up">Sign Up</NavDropdown.Item>
+                </div>}
+                {/* <NavDropdown.Divider /> */}
+                {/* <NavDropdown.Item href="#action5">
                   Something else here
-                </NavDropdown.Item>
+                </NavDropdown.Item> */}
               </NavDropdown>
             </Nav>
             <Form className="d-flex">
@@ -48,6 +55,7 @@ const NavComponant = () => {
                 aria-label="Search"
               />
               <Button variant="outline-success">Search</Button>
+              
             </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>

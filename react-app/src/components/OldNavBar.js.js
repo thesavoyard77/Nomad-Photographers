@@ -32,7 +32,7 @@ Modal.setAppElement('#root')
         </li>
         <li>
         {sessionUser && 
-                  <NavLink to='/photos' exact={true} className="navlink" activeClassName='active'>
+                  <NavLink to='/myphotos' exact={true} className="navlink" activeClassName='active'>
                   My Travels
                 </NavLink>}
         </li>
