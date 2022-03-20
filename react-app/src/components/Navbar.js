@@ -8,6 +8,7 @@ import './NavBar.css'
 
 const NavComponant = () => {
   const sessionUser = useSelector((state) => state.session?.user);
+ 
   const [ modalIsOpen, setModalIsOpen ] = useState(false)
     return (
         <>
@@ -26,14 +27,17 @@ const NavComponant = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/myphotos">My Photos</Nav.Link>
+              {sessionUser && <Nav.Link href="/upload">Upload a Photo</Nav.Link> }
+              {sessionUser && <Nav.Link href="/myphotos">My Photos</Nav.Link> }
               <Nav.Link href="/explore">Explore</Nav.Link>
               <NavDropdown title="Account" id="offcanvasNavbarDropdown">
               {sessionUser && 
                 <div className="account-logged-in">
-                  <h2>Current User:</h2>
+                  <h4>Current User:</h4>
                   <p><b>{sessionUser?.username?.split("")[0].toUpperCase() + sessionUser?.username?.slice(1)}</b></p>
-                  <p><b>{sessionUser.email}</b></p>
+                  <p><b>{sessionUser?.email}</b></p>
+                  <p>{sessionUser?.bio}</p>
+                  
                   <LogoutButton />
                 </div>}
                 {!sessionUser && 
@@ -50,7 +54,7 @@ const NavComponant = () => {
             <Form className="d-flex">
               <FormControl
                 type="search"
-                placeholder="Search"
+                placeholder="Coming soon"
                 className="me-2"
                 aria-label="Search"
               />

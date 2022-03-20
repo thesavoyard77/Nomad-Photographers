@@ -8,12 +8,13 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import User from './components/User';
 import Explore from './components/Explore'
 import SessionUserPage from './components/SessionUserPage';
+import AddPhotoForm from './components/AddPhoto/AddPhotoForm'
 import { authenticate } from './store/session';
 import AboutPage from './components/About';
 import Home from './components/Home'
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
+  const [ loaded, setLoaded ] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,6 +52,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/explore' exact={true} >
           <Explore />
+        </Route>
+        <Route path='/upload' exact={true} >
+          <AddPhotoForm />
         </Route>
         <Route path='/' exact={true} >
           <Home />
