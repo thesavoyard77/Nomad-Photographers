@@ -5,7 +5,6 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import Test from './components/Test';
 import User from './components/User';
 import Explore from './components/Explore'
 import SessionUserPage from './components/SessionUserPage';
@@ -40,9 +39,6 @@ function App() {
         </Route>
         <Route path='/about' exact={true}>
           <AboutPage />
-        </Route>
-        <Route path='/test' exact={true}>
-          <Test />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />

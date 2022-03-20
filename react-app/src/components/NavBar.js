@@ -47,7 +47,9 @@ Modal.setAppElement('#root')
           </NavLink>
         </li> */}
         <li>
+        
           <button className="account-button" onClick={() => setModalIsOpen(true)}>Account</button>
+          <Nav.Link href="#" className="account-button" onClick={() => setModalIsOpen(true)}>Home</Nav.Link>
           {!sessionUser && <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
                    style={{
                     overlay: {
