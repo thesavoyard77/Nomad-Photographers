@@ -3,18 +3,19 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import Navbar from './components/Navbar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-// import UsersList from './components/UsersList';
 import User from './components/User';
 import Explore from './components/Explore'
 import SessionUserPage from './components/SessionUserPage';
+import AddPhotoForm from './components/AddPhoto/AddPhotoForm'
 import { authenticate } from './store/session';
 import AboutPage from './components/About';
 import Home from './components/Home'
+import './index.css'
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
+  const [ loaded, setLoaded ] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,9 +31,9 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <Navbar />
       <Switch>
-        <ProtectedRoute path='/photos'>
+        <ProtectedRoute path='/myphotos'>
           <SessionUserPage />
           </ProtectedRoute>
         <Route path='/login' exact={true}>
@@ -52,6 +53,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/explore' exact={true} >
           <Explore />
+        </Route>
+        <Route path='/upload' exact={true} >
+          <AddPhotoForm />
         </Route>
         <Route path='/' exact={true} >
           <Home />

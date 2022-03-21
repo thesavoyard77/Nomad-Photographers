@@ -1,4 +1,4 @@
-.add-comment-form {
+/* .add-comment-form {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -24,10 +24,7 @@
 
 }
 
-/* .comment-buttons {
-    position: relative;
-    left: 20%;
-} */
+
 
 .edit-comment-submit {
     padding: .5rem;
@@ -86,4 +83,4 @@
 
 /* .add-wrapper {
     margin-bottom: 3rem;
-} */
+} */ 

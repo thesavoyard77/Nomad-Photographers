@@ -1,0 +1,171 @@
+/* =========================================Page Layout Start ===================================================================== */
+.container {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "slider slider slider"
+    "slider slider slider"
+    "comments photogrpher-info location-map"; 
+}
+.slider { grid-area: slider; }
+.comments { grid-area: comments; }
+.add-comments { grid-area: photogrpher-info; }
+.location-map { grid-area: location-map; }
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "slider"
+      "slider"
+      "comments"
+      "photographer-info"
+      "location-map"; 
+  }
+  .location-map { 
+    display: flex;
+    justify-content:center;
+    align-items: flex-start;
+  }
+
+}
+
+/* =========================================Page Layout End ===================================================================== */
+/* ======================================== Carousel CSS Start ================================================================== */
+
+.d-block {
+  display: block;
+  max-height: 80vh !important;
+  width: 100vw;
+  width: auto;
+  overflow: hidden;
+  object-fit: scale-down;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.carousel-control-prev-icon {
+  outline: black;
+  /* filter: invert(100%); */
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+ }
+ 
+ .carousel-control-next-icon {
+  outline: black;
+  /* filter: invert(100%); */
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+ }
+
+ .over-photo {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+ }
+
+ .carousel-background {
+  background-color: #535557;
+ }
+/* ======================================== Carousel CSS End ================================================================== */
+
+ /* ======================================== Comment Box CSS begin ================================================================== */
+ .comments{
+   overflow: hidden;
+ }
+.even-comment-div {
+  color: white;
+  text-align: left;
+  border: 1px solid white;
+  background-color: rgb(44, 41, 41);
+  border-radius: 3px;
+  margin: 2px;
+  padding-left: 15px;
+  padding-top: 5px;
+}
+
+.odd-comment-div, .even-comment-div {
+  overflow: hidden;
+}
+
+.even-comment-div > p {
+  font-size: 12px;
+}
+
+.odd-comment-div {
+  color: rgb(187, 160, 132);
+  text-align: right;
+  border: 1px solid rgb(187, 160, 132);
+  border-radius: 3px;
+  margin: 2px;
+  padding-right: 15px;
+  padding-top: 5px;
+}
+
+.odd-comment-div > p {
+  font-size: 12px;
+}
+
+.test-add-comment-form > label {
+  color: rgb(187, 160, 132);
+  font-family: 'Rouge Script', cursive;
+}
+
+.add-comment-box {
+  width: 90%;
+  color: white;
+  text-align: left;
+  background-color: rgb(24, 22, 22);
+  margin-left: 5px;
+}
+
+.test-add-comments-section {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.add-comment-text {
+  margin-left: 5px;
+}
+
+.add-comment-submit { 
+  position: absolute;
+  left: 78%;
+  top: 55%;
+}
+
+
+ /* ======================================== Comment Box CSS End ==================================================================== */
+ /* ======================================== Photographer Box CSS Begin ============================================================== */
+ .photogrpher-info { 
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+ .photographer-name {
+  color: rgb(187, 160, 132);
+  font-family: 'Rouge Script', cursive;
+ }
+
+ .photographer-bio {
+   color: white;
+   padding-left:20px;
+   padding-right:20px;
+   text-align: center;
+ }
+
+ .photo-bio-hr {
+  border: 0;
+  height: 2px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(206, 206, 206, 0.75), rgba(255, 255, 255, 0));
+ }
+ /* ======================================== Photographer Box CSS End ================================================================ */
+/* ======================================== Map Box CSS End ================================================================ */
+ .location-map { 
+  padding: 2px;
+ }
+
+ /* ======================================== Map Box CSS End ================================================================ */

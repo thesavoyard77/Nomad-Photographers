@@ -1,130 +1,48 @@
-import { useEffect, useState, useCallback } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import mapStyle from "../SessionUserPage/public/mapStyle";
-import './Carousels.css'
-import { getPhotosThunk } from "../../store/photo";
-import { getUsersThunk } from "../../store/user";
-import {BiLeftArrow, BiRightArrow} from 'react-icons/bi'
-import CommentsModal from "../Comments/ExploreCommentsModal";
-import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
+import { useState } from "react";
+import { useSelector } from 'react-redux'
+import ReactSlider from './ExploreCarousel';
+import GoogleMapTest from './ExploreGoogleMap'
+import Comments from './ExploreComments/ExploreComments'
+import TestAddComments from './ExploreComments/ExploreAddComment'
 
-export default function SessionUserPage() {
+import './explore.css'
 
-const dispatch = useDispatch();
-const photos = useSelector(store => Object.values(store?.photo))
-let [ key, setKey ] = useState('')
-const [ picture, setPicture ] = useState(0)
-const length = photos.length;
+const RenderPage = () => {
 
-useEffect(() => {
-    if (!key) {
-        (async () => {
-            const response = await fetch('api/photos/key');
-            const keyResponse = await response.json();
-            setKey(keyResponse);
-        })();
-    }
-});
+    const photos = useSelector(store => Object.values(store?.photo))
+    const [index, setIndex] = useState(0);
 
-let locationArray = [];
-
-const locationMap = () => {
-    photos?.map(photo => {
-        let geo_location = JSON.parse(photo?.geo_location)
-        locationArray.push(geo_location)
-        return
-    })
-}
-locationMap()
-
-const [currentPosition, setCurrentPosition] = useState(locationArray[0])
-const [ locationPopulated, setLocationPopulated ] = useState(false)
-
-useEffect(() => {
-    dispatch(getPhotosThunk())
-    dispatch(getUsersThunk())
-    return
-}, [dispatch])
-
-useEffect(() => {
-    
-    if (locationPopulated === false && locationArray.length > 1) {
-
-    setCurrentPosition(locationArray[0])
-    setLocationPopulated(true)
-    
-    }
-},[locationArray, locationPopulated]);
-
-  const containerStyle = {
-    width: '400px',
-    height: '250px'
-  };
-
-  const [map, setMap] = useState(null)
-
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-
-const nextSlide = () => {
-    setPicture(picture === length - 1 ? 0 : picture + 1)
-    setCurrentPosition(locationArray[picture === length - 1 ? 0 : picture + 1])
-}
-
-const prevSlide = () => {
-    setPicture(picture === 0 ? length -1 : picture - 1)
-    setCurrentPosition(locationArray[picture === 0 ? length -1 : picture - 1])
-}
-
-
-if(!photos.length) {
-    return null;
-}
-
-
-if (!key) return null;
-return (
-<section id="grandfather">
-    <div className="carousel">
-    <BiLeftArrow className="left-arrow" onClick={prevSlide}/>
-    <BiRightArrow className="right-arrow" onClick={nextSlide}/>
-    {photos?.map((photo, index) => {
-      
-        return (
-            <div className={index === picture ? 'slide active' : 'slide'} key={index}>
-                <div className="inner">
-              {index === picture && (<img src={photo?.url} alt='travel' className="current-image"></img>)}
-                <h2 className="photographer-name">Photo by {photo?.users?.username?.split("")[0].toUpperCase() + photo?.users?.username?.slice(1)} </h2>
-                <h3 className="location-name">{photo?.place_name}</h3>
-              <h5 className="description-text"><hr className="carousel-hr"></hr>{photo?.description}<hr className="carousel-hr"></hr></h5>
-                </div>
-                <div className="map_page__container">
-                <div id="map-page-container-inner" style={{ height: '300px', width: '300px' }}>
-                {key && currentPosition ? <LoadScript googleMapsApiKey={key.api} >
-                    <GoogleMap
-                    mapContainerStyle={containerStyle}
-                    zoom={12}
-                    center={currentPosition}
-                    options={{styles: mapStyle, disableDefaultUI: true, fullscreenControl: true}}
-                    onUnmount={onUnmount}
-                    >
-                    <Marker 
-                        position={currentPosition}
-                        title="Camera Marker"
-                        streetView={false} 
-                    />
-                </GoogleMap> </LoadScript>:null}
-                </div>
-                </div>
-                <CommentsModal photo={photos[picture]} />
+    return (
+        <div className="container">
+            <div className="slider">
+                <ReactSlider index={index} setIndex={setIndex} />
             </div>
-        )
-    })}
 
-    </div>
-
-
-</section>
-)
+            <div className="comments">
+                <TestAddComments photo={photos[index]}/>
+                <div className="comment-inner">
+                 <Comments photo={photos[index]}/>
+                </div>
+            </div>
+            <div className="photogrpher-info">
+                <h3 className="photographer-name">
+                    Photographed by {photos[index]?.users?.username?.split("")[0].toUpperCase() + photos[index]?.users?.username?.slice(1)}
+                </h3>
+                
+                <span>
+                <hr className="photo-bio-hr"></hr>
+                <p className="photographer-bio">
+                    {photos[index]?.users?.bio}
+                </p>
+                <hr className="photo-bio-hr"></hr>
+                </span>
+                
+            </div>
+            <div className="location-map">
+                <GoogleMapTest index={index} setIndex={setIndex} />
+            </div>
+        </div>
+    )
 }
+
+export default RenderPage;

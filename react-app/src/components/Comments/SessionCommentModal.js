@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import EditCommentForm from "./SessionEditCommentForm";
 import AddCommentForm from "./SessionAddCommentform";
-import '../Explore/Carousels.css'
+// import '../Explore/Carousels.css'
 
 export default function CommentsModal({ photo }) {
     const sessionUser = useSelector((state) => state.session?.user);
