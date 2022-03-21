@@ -1,4 +1,4 @@
-.sign-up-log-in {
+.sign-up {
     align-items: center;
     color: white;
     justify-content: center!important;
@@ -10,4 +10,8 @@
 
 .login-buttons {
     margin-left: 15px;
+}
+
+.signup-field {
+    width: 40vw!important;
 }

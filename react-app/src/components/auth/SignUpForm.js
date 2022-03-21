@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 import './SignUpForm.css'
 
 const SignUpForm = () => {
@@ -52,63 +54,77 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div className="sign-up-log-in"> 
+    <Form onSubmit={onSignUp}>
+      <div className="sign-up"> 
         <div>
         {errors.map((error, ind) => (
         <div key={ind} style={{color: "red"}}><b>{error}</b></div>
         ))}
         </div>
-        <div>
-          <label className="label-txt"><b>User Name</b></label>
-          <input
-            type='text'
+        <Form.Group className="mb-3" controlId="form.userName">
+          <Form.Label>User Name</Form.Label>
+          <Form.Control
+            type="text"
+            className="signup-field"
+            placeholder="User Name"
             name='username'
             onChange={updateUsername}
             value={username}
-          ></input>
-        </div>
-        <div>
-          <label><b>Email</b></label>
-          <input
-            type='text'
-            name='email'
-            onChange={updateEmail}
-            value={email}
-          ></input>
-        </div>
-        <div>
-          <label><b>Password</b></label>
-          <input
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-          ></input>
-        </div>
-        <div>
-          <label><b>Repeat Password</b></label>
-          <input
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-        ></input>
-        </div>
-        <div>
-          <label><b>Biography</b></label>
-          <input
-            type='text'
-            name='bio'
-            onChange={updateBio}
-            value={bio}
-            required={true}
-        ></input>
-        </div>
+             />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="form.signupEmail">
+      <Form.Label>Email address</Form.Label>
+        <Form.Control
+         type="email" 
+         className="signup-field"
+         placeholder="name@example.com" 
+         name='email'
+         onChange={updateEmail}
+         value={email}
+         />
+      </Form.Group>
+          <Form.Group className="mb-3" controlId="form.signupPassword">
+            <Form.Label column sm="2">
+              Password
+            </Form.Label>
+              <Form.Control
+               type="password" 
+               className="signup-field"
+               name='password'
+               placeholder="Password"
+               onChange={updatePassword}
+               value={password}
+                />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="form.signupRepeatPassword">
+            <Form.Label column sm="2">
+              Repeat Password
+            </Form.Label>
+              <Form.Control
+               type="password" 
+               className="signup-field"
+               name='repeat_password'
+               onChange={updateRepeatPassword}
+               value={repeatPassword}
+               required={true}
+                />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="form.signupBiography">
+            <Form.Label>Biography</Form.Label>
+            <Form.Control
+              as="textarea"
+              className="signup-field"
+              rows={3}
+              name='bio'
+              placeholder="Something about you..."
+              onChange={updateBio}
+              value={bio}
+              required={true}
+               />
+          </Form.Group>
       </div>
-      <button type='submit' className="sign-up-button">Sign Up</button>
-    </form>
+      <Button type='submit' variant="primary" className="sign-up-button">Sign Up</Button>
+    </Form>
   );
 };
 
