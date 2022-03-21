@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 import './SignUpForm.css'
 
 const LoginForm = () => {
@@ -44,41 +46,49 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <Form onSubmit={onLogin}>
       <div className="sign-up-log-in">  
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
-        <div>
-          <label htmlFor='email'><b>Email</b></label>
-          <input
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            className="login-field"
+            type="email"
+            placeholder="Enter email" 
             name='email'
-            type='text'
-            placeholder='Email'
             value={email}
             onChange={updateEmail}
             required={true}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'><b>Password</b></label>
-          <input
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={updatePassword}
-            required={true}
-          />
-          <button id="login" className="modal-button" type='submit'>Login</button> <br />
-          <button id="demo-login" className="modal-button" onClick={() => {
+            />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+           className="login-field"
+           type="password" 
+           placeholder="Password" 
+           name='password'
+           value={password}
+           onChange={updatePassword}
+           required={true}
+           />
+        </Form.Group>
+        <Button variant="primary" type="submit" className="login-buttons">
+          Submit
+        </Button>
+        <Button variant="primary" className="login-buttons" onClick={() => {
             demoLogin();
-          }}>Demo Login</button>
-        </div>
+          }}>Demo Login</Button>
       </div>
-    </form>
+    </Form>
   );
 };
 

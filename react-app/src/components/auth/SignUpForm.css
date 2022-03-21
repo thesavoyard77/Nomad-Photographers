@@ -1,46 +1,13 @@
-/* label {
-    color: black;
-    margin-right: 2rem;
+.sign-up-log-in {
+    align-items: center;
+    color: white;
+    justify-content: center!important;
 }
 
-.logout {
-    width: 5rem;
-    height: 2.5rem;
-    border-radius: 4px;
-    background-color: rgb(187, 160, 132);
-    color: black;
+.login-field {
+    width: 40vw!important;
 }
 
- .modal-button {
-    width: 5rem;
-    height: 2.5rem;
-    border-radius: 4px;
-    background-color: rgb(187, 160, 132);
-    color: black;
+.login-buttons {
+    margin-left: 15px;
 }
-
-.sign-up-button {
-    width: 5rem;
-    height: 2.5rem;
-    border-radius: 4px;
-    background-color: rgb(187, 160, 132);
-    color: black;
-}
-label {
-    display: inline-block;
-    width: 240px;
-}
-
-#login {
-    position: absolute;
-    bottom: 0%;
-    left: 20%;
-}
-
-/* #demo-login {
-
-} */
-
-/* .sign-up-log-in {
-    position: relative;
-}  */
