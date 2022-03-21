@@ -9,6 +9,7 @@ export default function AboutPage() {
     return (
     <div className="about-container">
         <div className="Title">
+        <hr className="hr"></hr>
         <h1 className="headers">~ About the Developer ~</h1>
         <hr className="hr"></hr>
         <h4 className="text">~ Christopher Felix ~</h4>
@@ -17,13 +18,13 @@ export default function AboutPage() {
              </p> <br />
              <label className="text">Github:    </label>
              <a  className="link" href="https://github.com/thesavoyard77"><BsGithub /></a> <br />
-             <label className="text">Linkedin:</label>
+             <label className="text">Linkedin: </label>
              <a className="link" href="https://www.linkedin.com/in/christopher-felix-a7a25a51"><BsLinkedin /></a> <br />
              <label className="text">This Project:    </label>
              <a  className="link" href="https://github.com/thesavoyard77/Nomad-Photographers"><BsGithub /></a> <br />
 
 
-        <hr className="hr"></hr>
+             <hr className="hr"></hr>
         </div>
         <div className="Links">
             <h2 className="headers">~ About the Project ~</h2>

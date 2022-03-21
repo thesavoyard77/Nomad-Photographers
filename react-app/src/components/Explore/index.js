@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useSelector } from 'react-redux'
-import ReactSlider from './TestCarousel';
-import GoogleMapTest from './GoogleMapTest'
-import Comments from './TestComments/TestComments'
-import TestAddComments from './TestComments/TestAddComment'
+import ReactSlider from './ExploreCarousel';
+import GoogleMapTest from './ExploreGoogleMap'
+import Comments from './ExploreComments/ExploreComments'
+import TestAddComments from './ExploreComments/ExploreAddComment'
 
-import './test.css'
+import './explore.css'
 
 const RenderPage = () => {
 

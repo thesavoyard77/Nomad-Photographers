@@ -4,7 +4,7 @@ import { Carousel } from 'react-bootstrap';
 import { getPhotosThunk } from "../../store/photo";
 import { getUsersThunk } from "../../store/user";
 
-import './test.css'
+import './explore.css'
 
 
 const HeroSlider = ({ index, setIndex }) => {

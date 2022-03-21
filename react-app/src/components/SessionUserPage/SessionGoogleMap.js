@@ -64,8 +64,8 @@ useEffect(() => {
 
   
   const containerStyle = {
-    width: '400px',
-    height: '250px'
+    width: '450px',
+    height: '300px'
   };
 
   const [map, setMap] = useState(null)
