@@ -1,4 +1,4 @@
-// import './About.css'
+import './About.css'
 import React from 'react'
 import { BsGithub, BsLinkedin } from 'react-icons/bs'
 
@@ -7,12 +7,12 @@ export default function AboutPage() {
 
 
     return (
-    <div className="container">
+    <div className="about-container">
         <div className="Title">
         <h1 className="headers">~ About the Developer ~</h1>
         <hr className="hr"></hr>
         <h4 className="text">~ Christopher Felix ~</h4>
-            <p className="text"> I am a soon-to-be graduate from appAcademy studying full stack web development.<br />
+            <p className="text"> I am a graduate from appAcademy studying full stack web development.<br />
                 I am an American-French dual national originally from Tillamook, Oregon. I currently live in Big Bear, California.
              </p> <br />
              <label className="text">Github:    </label>

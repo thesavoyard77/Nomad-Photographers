@@ -1,8 +1,27 @@
 
-  
-
-
 .add-photo-form {
     color: white !important;
+    margin-left: 1rem;
+    position: relative;
+}
+
+@media only screen and (min-width: 1100px) {
+    .map_page_container-add {
+        position: absolute;
+        right: 20%;
+        top: 0;
+        }
+}
+
+.upload-button {
+    width: 40vw!important;
+}
+
+.add-description { 
+    width: 40vw!important;
+}
+
+.add-place-name {
+    width: 40vw!important;
 }
 

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
 import mapStyle from "../public/mapStyle";
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import "./AddPhoto.css"
 
 export default function AddPhotoForm() {
@@ -113,35 +115,40 @@ export default function AddPhotoForm() {
  
     return  (
         <div className="add-photo-wrapper">
-            <form className="add-photo-form" onSubmit={handleSubmit}>
+            <Form className="add-photo-form" onSubmit={handleSubmit}>
             {errors.map((error, ind) => (
              <div key={ind} style={{color: "red"}}><b>{error}</b></div>
               ))}
-                <label><h2>Upload a Photo</h2></label>
-                <input type="file" 
-                className="upload-button"
-                accept="photo/*"
-                onChange={updatePhoto}
-                />
-                <label className="form-label">Description</label>
-                <textarea
-                className="add-description"
-                value={description}
-                onChange={updateDescription}
-                name="description"
-                placeholder="The Eiffel Tower"
-                maxLength='150'
-                ></textarea>
-                <label className="form-label">Place Name</label>
-                <textarea
-                className="add-place-name"
-                value={placeName}
-                onChange={updatePlaceName}
-                name="place_name"
-                placeholder="Paris, France"
-                maxLength='50'
-                ></textarea>
-                <div className="map_page__container-add">
+                  <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label>Upload a Photo</Form.Label>
+                        <Form.Control type="file"
+                            className="upload-button"
+                            accept="photo/*"
+                            onChange={updatePhoto}
+                        />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="form.description">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control as="textarea" rows={3}
+                            className="add-description"
+                            value={description}
+                            onChange={updateDescription}
+                            name="description"
+                            placeholder="The Eiffel Tower"
+                            maxLength='150'
+                         />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="form.placename">
+                        <Form.Label>Place Name</Form.Label>
+                        <Form.Control type="text" placeholder="Paris, France"
+                            className="add-place-name"
+                            value={placeName}
+                            onChange={updatePlaceName}
+                            name="place_name"
+                            maxLength='50'
+                        />
+                  </Form.Group>
+                <div className="map_page_container-add">
                     <div id="map-page-container-inner-add" style={{ height: '600px', width: '400px' }}>
                         {key ? <LoadScript googleMapsApiKey={key.api} > <GoogleMap
                             mapContainerStyle={containerStyle}
@@ -157,11 +164,13 @@ export default function AddPhotoForm() {
                             position={{ lat:marker.lat,lng:marker.lng }}
                             ></Marker>
                         </GoogleMap></LoadScript>:null}
+                        <Button variant="primary" type="submit" className="add-submit">
+                            Submit
+                        </Button>
                     </div>
                 </div>
-                <button className="add-submit" type="submit" value="submit">Submit</button>
                 {(photoLoading) && <p>Loading...</p>}
-            </form>
+            </Form>
         </div>
     )
 
