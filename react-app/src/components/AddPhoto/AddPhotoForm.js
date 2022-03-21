@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSessionPhotosThunk } from '../../store/photo';
 import mapStyle from "../public/mapStyle";
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
+import "./AddPhoto.css"
 
 export default function AddPhotoForm() {
     const [errors, setErrors] = useState([]);
@@ -79,7 +80,7 @@ export default function AddPhotoForm() {
         if (res.ok) {
             const data = await res.json();
             setPhotoLoading(false)
-            history.push('/photos')
+            history.push('/myphotos')
             dispatch(getSessionPhotosThunk(id))
         } else {
             setPhotoLoading(false)

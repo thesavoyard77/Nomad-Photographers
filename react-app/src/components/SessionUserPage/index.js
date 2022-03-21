@@ -12,9 +12,11 @@ const RenderPage = () => {
     const photos = useSelector(store => Object.values(store?.photo))
     const [index, setIndex] = useState(0);
 
-    if (!photos.length) {
-        return <Redirect to='/upload' />;
-    }
+//   const length = photos.length;
+//   console.log(length);
+//     if (length === 0) {
+//         return <Redirect to='/upload' />;
+//     }
 
     return (
         <div className="container">
@@ -30,12 +32,13 @@ const RenderPage = () => {
                 <h3 className="photographer-name">
                     Photographed by {photos[index]?.users?.username?.split("")[0].toUpperCase() + photos[index]?.users?.username?.slice(1)}
                 </h3>
-                
+                <span>
+                <hr className="photo-bio-hr"></hr>
                 <p className="photographer-bio">
-                    <hr className="photo-bio-hr"></hr>
                     {photos[index]?.users?.bio}
-                    <hr className="photo-bio-hr"></hr>
                 </p>
+                <hr className="photo-bio-hr"></hr>
+                </span>
                 
             </div>
             <div className="location-map">

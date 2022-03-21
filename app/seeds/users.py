@@ -10,7 +10,7 @@ def seed_users():
     bobbie = User(
         username='bobbie', email='bobbie@aa.io', password='password', bio='I am another random user, I love to travel!')
     chris = User(
-        username='chris', email='chris@aa.io', password='password', bio='I am the website creator, my photography skills are lacking but I am well travelled!')
+        username='TheSavoyard', email='chris@aa.io', password='password', bio='I want to show you the places the average traveler does not see. The unknown monuments, historical buildings, and cultural sites that are only known by locals.')
 
     db.session.add(demo)
     db.session.add(marnie)

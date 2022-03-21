@@ -37,10 +37,10 @@ const GoogleMapTest = ({ index, setIndex }) => {
         })
     }
     locationMap()
-    
+ 
     const [currentPosition, setCurrentPosition] = useState(locationArray[0])
     const [ locationPopulated, setLocationPopulated ] = useState(false)
-
+    
 
     useEffect(() => {
         setCurrentPosition(locationArray[index])
@@ -51,10 +51,10 @@ const GoogleMapTest = ({ index, setIndex }) => {
         return
     }, [dispatch])
 
-    
+
 useEffect(() => {
     
-    if (locationPopulated === false && locationArray.length > 1) {
+    if (locationPopulated === false && locationArray.length > 0) {
 
     setCurrentPosition(locationArray[0])
     setLocationPopulated(true)

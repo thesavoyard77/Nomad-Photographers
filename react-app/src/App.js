@@ -12,6 +12,7 @@ import AddPhotoForm from './components/AddPhoto/AddPhotoForm'
 import { authenticate } from './store/session';
 import AboutPage from './components/About';
 import Home from './components/Home'
+import './index.css'
 
 function App() {
   const [ loaded, setLoaded ] = useState(false);
